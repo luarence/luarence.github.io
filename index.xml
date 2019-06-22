@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>水的一匹Lu的日常</title>
+    <title>水的一匹Lu的Blog</title>
     <link>https://luarence.github.io/</link>
-    <description>Recent content on 水的一匹Lu的日常</description>
+    <description>Recent content on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 21:32:28 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Jun 2019 00:12:55 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Eassy02</title>
+      <link>https://luarence.github.io/post/eassy02/</link>
+      <pubDate>Sat, 22 Jun 2019 00:12:55 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy02/</guid>
+      <description>test</description>
+    </item>
+    
+    <item>
+      <title>Eassy01</title>
+      <link>https://luarence.github.io/post/eassy01/</link>
+      <pubDate>Sat, 22 Jun 2019 00:08:03 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy01/</guid>
+      <description>以stream结尾都是字节流，reader和writer结尾都是字符流。 InputStream是所有字节输入流的父类，OutputStrea</description>
+    </item>
     
     <item>
       <title>Test</title>
@@ -18,6 +36,35 @@
       
       <guid>https://luarence.github.io/post/test/</guid>
       <description>这是一篇测试文章</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://luarence.github.io/search/placeholder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://luarence.github.io/search/placeholder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://luarence.github.io/top/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://luarence.github.io/top/about/</guid>
+      <description>我是一名计算机科学与技术专业在读本科生，2017年入学，喜欢技术及旅行，现在想通过博客写记录及分享一下我的学习生活。
+&amp;mdash;莅临寒舍，倍感荣幸&amp;mdash;
+Feel free to connect me via Github (https://github.com/luarence) or drop him an email (l719536781@163.com)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://luarence.github.io/top/books/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://luarence.github.io/top/books/</guid>
+      <description> Lu Yuxi学习笔记 </description>
     </item>
     
   </channel>

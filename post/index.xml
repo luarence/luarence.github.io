@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 水的一匹Lu的日常</title>
+    <title>Posts on 水的一匹Lu的Blog</title>
     <link>https://luarence.github.io/post/</link>
-    <description>Recent content in Posts on 水的一匹Lu的日常</description>
+    <description>Recent content in Posts on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 21:32:28 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Jun 2019 00:12:55 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Eassy02</title>
+      <link>https://luarence.github.io/post/eassy02/</link>
+      <pubDate>Sat, 22 Jun 2019 00:12:55 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy02/</guid>
+      <description>test</description>
+    </item>
+    
+    <item>
+      <title>Eassy01</title>
+      <link>https://luarence.github.io/post/eassy01/</link>
+      <pubDate>Sat, 22 Jun 2019 00:08:03 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy01/</guid>
+      <description>以stream结尾都是字节流，reader和writer结尾都是字符流。 InputStream是所有字节输入流的父类，OutputStrea</description>
+    </item>
     
     <item>
       <title>Test</title>
