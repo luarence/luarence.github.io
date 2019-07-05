@@ -3,30 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://luarence.github.io/post/</loc>
+    <lastmod>2019-07-05T13:44:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://luarence.github.io/post/eassy03/</loc>
+    <lastmod>2019-07-05T13:44:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://luarence.github.io/</loc>
+    <lastmod>2019-07-05T13:44:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://luarence.github.io/post/eassy02/</loc>
     <lastmod>2019-06-22T00:12:55+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://luarence.github.io/post/</loc>
-    <lastmod>2019-06-22T00:12:55+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://luarence.github.io/</loc>
-    <lastmod>2019-06-22T00:12:55+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://luarence.github.io/post/eassy01/</loc>
     <lastmod>2019-06-22T00:08:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://luarence.github.io/post/test/</loc>
-    <lastmod>2019-06-20T21:32:28+08:00</lastmod>
   </url>
   
   <url>

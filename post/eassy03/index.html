@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="Eassy01" />
-    <meta property="og:title" content="Eassy01" />
-    <meta property="twitter:title" content="Eassy01" />
+    <meta name="title" content="关于简单DP(ACM)" />
+    <meta property="og:title" content="关于简单DP(ACM)" />
+    <meta property="twitter:title" content="关于简单DP(ACM)" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Eassy01-</title>
+    <title>关于简单DP(ACM)-</title>
 
-    <link rel="canonical" href="/post/eassy01/">
+    <link rel="canonical" href="/post/eassy03/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -157,7 +157,7 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>Eassy01</h1>
+                    <h1>关于简单DP(ACM)</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
 			Posted by 
@@ -165,7 +165,7 @@
 		            水的一匹Lu的Blog
 			 
 			on 
-			Saturday, June 22, 2019
+			Friday, July 5, 2019
                         
                     </span>
                 </div>
@@ -193,33 +193,49 @@
                 </header>
                 
                 
-                <p>以stream结尾都是字节流，reader和writer结尾都是字符流。</p>
+                <p><strong>动态规划思想：同一件事情不做第二次</strong></p>
 
-<p>InputStream是所有字节输入流的父类，OutputStream是所有字节输出流的父类。</p>
+<p><strong>划分为子问题</strong></p>
 
-<p>Reader是字符输入流的父类，Writer是字符输出流的父类。</p>
+<p><strong>塔形问题从最底下往上面推</strong></p>
 
-<p>字节流：</p>
+<hr />
 
-<p>文件流：FileOutputStream和FileInputStream</p>
+<p>举个栗子(题目来源：杭电OJ)</p>
 
-<p>缓冲流：BufferedOutputStream和BufferedInputStream</p>
+<p><img src="staticeassy03塔形DP.png" alt="最简单的塔形DP" /></p>
 
-<p>对象流：ObjectOutputStream和ObjectInputStream</p>
+<blockquote>
+<p>最重要的就是找出<strong>状态转移方程</strong></p>
+</blockquote>
 
-<p>字符流：</p>
+<p>此题就是从底往上递推，状态转移方程是：</p>
 
-<p>转换流：InputStreamReader和OutputStreamWriter</p>
+<blockquote>
+<p>dp[i][j]=max(dp[i+1][j],dp[i+1][j+1])+a[i][j]</p>
+</blockquote>
 
-<p>缓冲字符流：PrintWriter和BufferedReader</p>
+<p>我们用两个循环套住状态转移方程：</p>
 
-<p>区别：</p>
+<blockquote>
+<p>for(int i=n-1;i&gt;=1;i&ndash;){</p>
 
-<p>　　读写的时候一个是按字节读写，一个是按字符。</p>
+<p>for(int j =1;j&lt;=I;j++){</p>
 
-<p>　　在读写文件需要对内容按行处理，比如比较特定字符，处理某一行数据的时候一般会选择字符流。</p>
+<p>dp[i][j]=max(dp[i+1][j],dp[i+1][j+1])+a[i][j];</p>
 
-<p>　　只是读写文件，和文件内容无关的，一般选择字节流。</p>
+<p>}</p>
+
+<p>}</p>
+</blockquote>
+
+<p>我们提前已经将塔的最后一行元素赋给了dp数组，所以状态转移方程中出现了i+1,j+1;以n-1行为例，上面代码的意思是比较n-1行每个元素下面连接的两个元素大小再加自己就是n-1行这个元素位置上的最优解了（如元素2，就是比较2下面的19和7的大小，可见19比7大，所以确定n-1行第一个元素的最优解为2+19=21），以此类推就知道了n-1行每个元素的最优解了，然后第n行就没有意义了，我们就可以不考虑了，再把我们刚刚求出的n-1行看作<strong>“最后一行”</strong>，这样我们就可以求n-2行的最优解了，以此类推求到第一行，dp[1][1]就是我们要求的最终的最优解。</p>
+
+<p><img src="staticeassy03例子2.png" alt="" /></p>
+
+<p>​   <strong>做一些dp题时或者其它类似斐波那契数列这种需要反复计算同一个数值的问题时（很耗费时间O(2^n)），可以用记忆化搜索的方法，提前算好储存起来，或者边算便储存，保证不重复计算同一个值，再用的时候调用即可。</strong></p>
+
+<p>​   以上仅为我学简单DP后一点简单的感想和总结，一点拙见，有问题和建议可以通过邮箱联系我，我会虚心接受各位大佬的宝贵意见。</p>
 
 
                 
@@ -267,11 +283,11 @@
                 <hr>
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/post/eassy02/" data-toggle="tooltip" data-placement="top" title="Eassy02">Next
-                            Post &rarr;</a>
+                    <li class="previous">
+                        <a href="/post/eassy02/" data-toggle="tooltip" data-placement="top" title="Eassy02">&larr;
+                            Previous Post</a>
                     </li>
+                    
                     
                 </ul>
 
