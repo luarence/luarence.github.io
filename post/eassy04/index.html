@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="关于简单DP(ACM)" />
-    <meta property="og:title" content="关于简单DP(ACM)" />
-    <meta property="twitter:title" content="关于简单DP(ACM)" />
+    <meta name="title" content="DFS BFS回顾" />
+    <meta property="og:title" content="DFS BFS回顾" />
+    <meta property="twitter:title" content="DFS BFS回顾" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>关于简单DP(ACM)-</title>
+    <title>DFS BFS回顾-</title>
 
-    <link rel="canonical" href="/post/eassy03/">
+    <link rel="canonical" href="/post/eassy04/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -157,7 +157,7 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>关于简单DP(ACM)</h1>
+                    <h1>DFS BFS回顾</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
 			Posted by 
@@ -165,7 +165,7 @@
 		            水的一匹Lu的Blog
 			 
 			on 
-			Friday, July 5, 2019
+			Wednesday, August 7, 2019
                         
                     </span>
                 </div>
@@ -191,51 +191,284 @@
                 <header>
                     <h2>TOC</h2>
                 </header>
+                <nav id="TableOfContents">
+<ul>
+<li><a href="#dfs-bfs回顾">DFS BFS回顾</a>
+<ul>
+<li>
+<ul>
+<li><a href="#dfs-code">DFS code:</a></li>
+<li><a href="#bfs-code">BFS code:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
                 
                 
-                <p><strong>动态规划思想：同一件事情不做第二次</strong></p>
 
-<p><strong>划分为子问题</strong></p>
+<h1 id="dfs-bfs回顾">DFS BFS回顾</h1>
 
-<p><strong>塔形问题从最底下往上面推</strong></p>
+<p>​   <strong>前言：</strong>这次回顾用一道简单的BFS，DFS入门题目进行。其实一年之前就学习过DFS,BFS,并且用C++ AC了这一道题目，当时初学时的自己在AC过后，兴奋之余也没想着要经常温习回顾，这也是导致今天再次做到这道题时，磕磕绊绊，思前想后，敲代码时犹豫不决的原因之一；这也鞭策我要经常温习之前学过的知识。</p>
 
 <hr />
 
-<p>举个栗子(题目来源：杭电OJ)</p>
+<p>话不多说，先上题：（题目来自HNUCM）</p>
 
-<p><img src="/img/eassy03/塔形DP.png" alt="最简单的塔形DP" /></p>
-
-<blockquote>
-<p>最重要的就是找出<strong>状态转移方程</strong></p>
-</blockquote>
-
-<p>此题就是从底往上递推，状态转移方程是：</p>
+<p><strong>题目描述</strong></p>
 
 <blockquote>
-<p>dp[i][j]=max(dp[i+1][j],dp[i+1][j+1])+a[i][j]</p>
+<p>小明置身于一个迷宫，请你帮小明找出从起点到终点的最短路程。
+小明只能向上下左右四个方向移动</p>
 </blockquote>
 
-<p>我们用两个循环套住状态转移方程：</p>
+<p><strong>输入</strong></p>
 
 <blockquote>
-<p>for(int i=n-1;i&gt;=1;i&ndash;){</p>
-
-<p>for(int j =1;j&lt;=I;j++){</p>
-
-<p>dp[i][j]=max(dp[i+1][j],dp[i+1][j+1])+a[i][j];</p>
-
-<p>}</p>
-
-<p>}</p>
+<p>输入包含多组测试数据。输入的第一行是一个整数T，表示有T组测试数据。
+每组输入的第一行是两个整数N和M（1&lt;=N,M&lt;=100）。
+接下来N行，每行输入M个字符，每个字符表示迷宫中的一个小方格。
+字符的含义如下：
+‘S’：起点
+‘E’：终点
+‘-’：空地，可以通过
+‘#’：障碍，无法通过
+输入数据保证有且仅有一个起点和终点。</p>
 </blockquote>
 
-<p>我们提前已经将塔的最后一行元素赋给了dp数组，所以状态转移方程中出现了i+1,j+1;以n-1行为例，上面代码的意思是比较n-1行每个元素下面连接的两个元素大小再加自己就是n-1行这个元素位置上的最优解了（如元素2，就是比较2下面的19和7的大小，可见19比7大，所以确定n-1行第一个元素的最优解为2+19=21），以此类推就知道了n-1行每个元素的最优解了，然后第n行就没有意义了，我们就可以不考虑了，再把我们刚刚求出的n-1行看作<strong>“最后一行”</strong>，这样我们就可以求n-2行的最优解了，以此类推求到第一行，dp[1][1]就是我们要求的最终的最优解。</p>
+<p><strong>输出</strong></p>
 
-<p><img src="/img/eassy03/例子2.png" alt="" /></p>
+<blockquote>
+<p>对于每组输入，输出从起点到终点的最短路程，如果不存在从起点到终点的路，则输出-1。</p>
+</blockquote>
 
-<p>​   <strong>做一些dp题时或者其它类似斐波那契数列这种需要反复计算同一个数值的问题时（很耗费时间O(2^n)），可以用记忆化搜索的方法，提前算好储存起来，或者边算便储存，保证不重复计算同一个值，再用的时候调用即可。</strong></p>
+<p><strong>样例输入</strong></p>
 
-<p>​   以上仅为我学简单DP后一点简单的感想和总结，一点拙见，有问题和建议可以通过邮箱联系我，我会虚心接受各位大佬的宝贵意见。</p>
+<blockquote>
+<pre><code>1
+5 5
+S-###
+-----
+##---
+E#---
+---##
+</code></pre>
+</blockquote>
+
+<p><strong>样例输出</strong></p>
+
+<blockquote>
+<pre><code>9
+</code></pre>
+</blockquote>
+
+<p><strong>这次我用Java对这道题进行回顾</strong></p>
+
+<p>首先上DFS（一条路走到黑）,这种用时间换取空间的做法大多会TLE,事实也确实如此，这道题可以用DFS解出来，但是会超时，因为反复的递归耗费了大量的时间。</p>
+
+<h3 id="dfs-code">DFS code:</h3>
+
+<blockquote>
+<pre><code>import java.util.Queue;
+import java.util.Scanner;
+
+public class HNUCM_1221_DFS {
+    public static int p,q;
+
+    //存放地图的数组
+    public static char[][] arr;
+
+    //标记数组
+    public static int[][] maker;
+
+    public static int sx,sy,gx,gy;
+
+    //初始化最短值
+    public static int min = 99999;
+
+    public static int[] dx = {1,0,-1,0};
+    public static int[] dy = {0,1,0,-1};
+
+    public static void dfs(int x,int y,int step){
+        //到达终点
+        if (x==gx &amp;&amp; y==gy){
+            if (step &lt; min){
+                min = step;
+            }
+            return;
+        }
+        //向四个方向走
+        for (int i = 0; i &lt; 4 ;i++){
+            int nx = x+dx[i];
+            int ny = y+dy[i];
+            //判断有没有出界，如果出界退出此次循环
+            if (nx &gt; p-1 || nx &lt; 0 || ny &gt; q-1 || ny &lt; 0){
+                continue;
+            }
+
+            //判断有没有碰壁
+            if (arr[nx][ny] != '#' &amp;&amp; maker[nx][ny] == 0){
+//                System.out.println(nx+&quot; &quot;+ny);
+                //标记走过
+                maker[nx][ny] = 1;
+                dfs(nx,ny,step+1);
+                //取消标记
+                maker[nx][ny] = 0;
+            }
+        }
+        return;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+
+        int n = sc.nextInt();
+
+        while (n--&gt;0){
+            p = sc.nextInt();
+            q = sc.nextInt();
+
+            arr = new char[p][q];
+            maker = new int[p][q];
+            //初始化迷宫
+            for (int i = 0 ;i &lt; p ;i++){
+                String b = sc.next();
+                for (int j = 0 ; j &lt; q ;j++){
+                    arr[i][j] = b.charAt(j);
+                    //确定起点，终点坐标
+                    if (arr[i][j] == 'S'){
+                        sx = i;
+                        sy = j;
+                    }
+                    if (arr[i][j] == 'E'){
+                        gx = i;
+                        gy = j;
+                    }
+                }
+            }
+
+            dfs(sx,sy,0);
+
+//            System.out.println(sx+&quot; &quot;+sy);
+            if (min == 99999){
+                min = -1;
+            }
+
+            System.out.println(min);
+            min = 99999;
+        }
+    }
+}
+</code></pre>
+</blockquote>
+
+<h3 id="bfs-code">BFS code:</h3>
+
+<blockquote>
+<pre><code>import java.util.LinkedList;
+import java.util.Scanner;
+
+public class HNUCM_1221_BFS {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int min = 99999;
+
+        //方向数组
+        int[] dx = {1,0,-1,0};
+        int[] dy = {0,1,0,-1};
+
+        //输入数据组数
+        int n = sc.nextInt();
+
+
+        while (n-- &gt; 0) {
+            int p = sc.nextInt();
+            int q = sc.nextInt();
+
+            char[][] map = new char[p][q];
+            int sx = 0,sy = 0,gx = 0,gy = 0;
+            //初始化地图
+            for (int i = 0 ; i &lt; p ;++i){
+                String a = sc.next();
+                for (int j = 0 ;j &lt; q ; ++j){
+                    map[i][j] = a.charAt(j);
+                    if (map[i][j] == 'S') {
+                        sx = i;
+                        sy = j;
+                    }
+                    if (map[i][j] == 'E') {
+                        gx = i;
+                        gy = j;
+                    }
+                }
+            }
+            Node start = new Node(sx,sy,null);
+            //创建队列，BFS准备工作
+            LinkedList&lt;Node&gt; queue = new LinkedList&lt;&gt;();
+            //创建临时节点
+            Node tmp = null;
+            //压入开始节点
+            queue.offer(start);
+            //开始bfs搜素地图
+            ok:
+            while (!queue.isEmpty()) {
+                //出队第一个节点
+                tmp = queue.poll();
+                //遍历四个方向
+                for (int i = 0 ; i &lt; 4;++i){
+                    int nx = tmp.x + dx[i];
+                    int ny = tmp.y + dy[i];
+                    //看是否超出边界
+                    if (nx &lt; 0 || nx &gt; p-1 || ny &lt; 0 || ny &gt; q-1) {
+                        continue;
+                    }
+                    if (map[nx][ny] == '#') {
+                        continue;
+                    }
+                    Node next = new Node(nx,ny,tmp);
+                    //找到终点
+                    if (nx == gx &amp;&amp; ny == gy) {
+//                        min = next.dis-1;
+                        queue.clear();
+                        queue.offerFirst(next);
+                        Node preNode = next.pre;
+                        while (preNode != null) {
+                            queue.offerFirst(preNode);
+                            preNode = preNode.pre;
+                        }
+                        min = queue.size();
+                        System.out.println(min-1);
+                        break ok;
+                    }
+                    map[nx][ny] = '#';
+                    queue.offer(next);
+                }
+            }
+            if (min == 99999){
+                System.out.println(-1);
+            }
+            //这是个坑！！！我第一次把他写在了外面，以至于一直报WA50%
+            min = 99999;
+
+        }
+    }
+
+}
+class Node{
+    int x;
+    int y;
+    int dis;
+    Node pre;
+    public Node(int x,int y,Node N){
+        this.x = x;
+        this.y = y;
+        this.pre = N;
+    }
+
+}
+</code></pre>
+</blockquote>
 
 
                 
@@ -284,15 +517,10 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/eassy02/" data-toggle="tooltip" data-placement="top" title="Eassy02">&larr;
+                        <a href="/post/eassy03/" data-toggle="tooltip" data-placement="top" title="关于简单DP(ACM)">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/eassy04/" data-toggle="tooltip" data-placement="top" title="DFS BFS回顾">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

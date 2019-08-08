@@ -6,10 +6,19 @@
     <description>Recent content on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jul 2019 13:44:01 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 21:49:16 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DFS BFS回顾</title>
+      <link>https://luarence.github.io/post/eassy04/</link>
+      <pubDate>Wed, 07 Aug 2019 21:49:16 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy04/</guid>
+      <description>DFS BFS回顾 ​ 前言：这次回顾用一道简单的BFS，DFS入门题目进行。其实一年之前就学习过DFS,BFS,并且用C++ AC了这一道题目，当时初</description>
+    </item>
     
     <item>
       <title>关于简单DP(ACM)</title>
