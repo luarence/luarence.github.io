@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.55.5" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +15,9 @@
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="并查集回顾" />
+    <meta property="og:title" content="并查集回顾" />
+    <meta property="twitter:title" content="并查集回顾" />
     
 
     
@@ -35,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>水的一匹Lu的Blog-</title>
+    <title>并查集回顾-</title>
 
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="/post/eassy05/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -144,14 +143,31 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg-jeep.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>水的一匹Lu的Blog </h1>
-                    
-		    <span class="subheading">路在脚下，心向远方</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>并查集回顾</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+			Posted by 
+			
+		            水的一匹Lu的Blog
+			 
+			on 
+			Saturday, August 10, 2019
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -160,221 +176,250 @@
 
 
 
-  
-<div class="container">
-    <div class="row">
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#java-code">Java code:</a></li>
+</ul></li>
+</ul>
+</nav>
+                
+                
+
+<p><strong>前言:</strong>我浅显的把他定义为可以解决类似寻找联通路和独立块之类的问题。今年再拾起来的时候，自己敲代码的时候已经有了一种生疏的感觉，可见定期多看看自己以前写过的代码，学过的算法时多么重要啊~所以写今天这篇博客一方面是再把刚刚写过的复盘巩固一下，另一方面方便日后再进行回顾，还有要是或多或少帮助到屏幕前额你，我也感到十分荣幸。</p>
+
+<hr />
+
+<p>这次还是用一道入门题来回顾：(题目来自HDU-OJ)</p>
+
+<p><strong>Title</strong></p>
+
+<p>畅通工程</p>
+
+<p><strong>Problem Description</strong></p>
+
+<blockquote>
+<p>某省调查城镇交通状况，得到现有城镇道路统计表，表中列出了每条道路直接连通的城镇。省政府“畅通工程”的目标是使全省任何两个城镇间都可以实现交通（但不一定有直接的道路相连，只要互相间接通过道路可达即可）。问最少还需要建设多少条道路？</p>
+</blockquote>
+
+<p><strong>Input</strong></p>
+
+<blockquote>
+<p>测试输入包含若干测试用例。每个测试用例的第1行给出两个正整数，分别是城镇数目N ( &lt; 1000 )和道路数目M；随后的M行对应M条道路，每行给出一对正整数，分别是该条道路直接连通的两个城镇的编号。为简单起见，城镇从1到N编号。
+注意:两个城市之间可以有多条道路相通,也就是说
+3 3
+1 2
+1 2
+2 1
+这种输入也是合法的
+当N为0时，输入结束，该用例不被处理。</p>
+</blockquote>
+
+<p><strong>Output</strong></p>
+
+<blockquote>
+<p>对每个测试用例，在1行里输出最少还需要建设的道路数目。</p>
+</blockquote>
+
+<p><strong>Sample Input</strong></p>
+
+<pre><code>4 2
+1 3
+4 3
+3 3
+1 2
+1 3
+2 3
+5 2
+1 2
+3 5
+999 0
+0
+</code></pre>
+
+<p><strong>Sample Output</strong></p>
+
+<pre><code>1
+0
+2
+998
+</code></pre>
+
+<h2 id="java-code">Java code:</h2>
+
+<pre><code class="language-java">import java.util.Scanner;
+
+public class HDU_1232 {
+    //寻找祖先方法
+    static int find(int[] parent,int f){
+        int r = f;
+        while (parent[r]!=-1){
+            r = parent[r];
+        }
+        int i = f,j;
+        //路径压缩（解释请往下翻）
+        while (i!=r){
+            j = parent[i];
+            parent[i] = r;
+            i = j;
+        }
+        return r;
+    }
+    
+    //联合方法
+    static void union(int[] parent,int x,int y){
+        int fx = find(parent,x);
+        int fy = find(parent,y);
+        if(fx != fy){
+            parent[fx] = fy;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        while (n != 0) {
+            int m = sc.nextInt();
+            int sum = 0;
+            int[] parent = new int[n+1];
+            //初始化祖先数组
+            for(int i = 1;i&lt;=n;++i){
+                parent[i] = -1;
+            }
+
+            for (int i = 0; i &lt; m; i++) {
+                int x = sc.nextInt();
+                int y = sc.nextInt();
+                union(parent,x,y);
+            }
+
+            for (int i = 1;i &lt;= n ;i++){
+                if (parent[i] == -1){
+                    sum++;
+                }
+            }
+
+            System.out.println(sum-1);
+            n = sc.nextInt();
+        }
+    }
+}
+
+</code></pre>
+
+<p><strong>路径压缩解释图</strong></p>
+
+<p><img src="/img/eassy05/01.png" alt="01" /></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://luarence.github.io/"><img src="/img/favicon.png" />水的一匹Lu的Blog</a></span>
         
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
-
-<div class="post-preview">
-    <a href="https://luarence.github.io/post/eassy05/">
-        <h2 class="post-title">
-            并查集回顾
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            前言:我浅显的把他定义为可以解决类似寻找联通路和独立块之类的问题。今年再拾起来的时候，自己敲代码的时候已经有了一种生疏的感觉，可见定期多看看
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 水的一匹Lu的Blog Saturday, August 10, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://luarence.github.io/post/eassy04/">
-        <h2 class="post-title">
-            DFS BFS回顾
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            DFS BFS回顾 ​ 前言：这次回顾用一道简单的BFS，DFS入门题目进行。其实一年之前就学习过DFS,BFS,并且用C++ AC了这一道题目，当时初
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 水的一匹Lu的Blog Wednesday, August 7, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://luarence.github.io/post/eassy03/">
-        <h2 class="post-title">
-            关于简单DP(ACM)
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            动态规划思想：同一件事情不做第二次 划分为子问题 塔形问题从最底下往上面推 举个栗子(题目来源：杭电OJ) 最重要的就是找出状态转移方程 此题就是从底
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 水的一匹Lu的Blog Friday, July 5, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://luarence.github.io/post/eassy02/">
-        <h2 class="post-title">
-            Eassy02
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            test
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 水的一匹Lu的Blog Saturday, June 22, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://luarence.github.io/post/eassy01/">
-        <h2 class="post-title">
-            Eassy01
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            以stream结尾都是字节流，reader和writer结尾都是字符流。 InputStream是所有字节输入流的父类，OutputStrea
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 水的一匹Lu的Blog Saturday, June 22, 2019
-    </p>
-</div>
-<hr>
-
-
-            
-
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
-        </div>
-    </section>
-    
-
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/luyuxi.png" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p> Technical and travel enthusiasts of Undergraduates </p>
-            
-           
-           <ul class="list-inline"> 
-               
-               <li>
-                   <a href="https://luarence.github.io/index.xml" rel="alternate" type="application/rss+xml" title="水的一匹Lu的Blog" >
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="/your%20wechat%20qr%20code%20image">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/luarence">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-                </ul>
-            </div>
-    </section>
-	
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-            
-            <li><a target="_blank" href="/#">暂无</a></li>
-            
-        </ul>
-    </section>
-    
-
-    
-    
-</div>
-
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
 	</div>
 </div>
+<script type="text/javascript" src="/js/reward.js"></script>
 
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/eassy04/" data-toggle="tooltip" data-placement="top" title="DFS BFS回顾">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="#">暂无</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
@@ -386,7 +431,7 @@
                 <ul class="list-inline text-center">
                    
                    <li>
-                       <a href="https://luarence.github.io/index.xml" rel="alternate" type="application/rss+xml" title="水的一匹Lu的Blog" >
+                       <a href="" rel="alternate" type="application/rss+xml" title="水的一匹Lu的Blog" >
                            <span class="fa-stack fa-lg">
                                <i class="fa fa-circle fa-stack-2x"></i>
                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
