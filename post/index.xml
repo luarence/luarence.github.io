@@ -38,23 +38,5 @@
       <description>动态规划思想：同一件事情不做第二次 划分为子问题 塔形问题从最底下往上面推 举个栗子(题目来源：杭电OJ) 最重要的就是找出状态转移方程 此题就是从底</description>
     </item>
     
-    <item>
-      <title>Eassy02</title>
-      <link>https://luarence.github.io/post/eassy02/</link>
-      <pubDate>Sat, 22 Jun 2019 00:12:55 +0800</pubDate>
-      
-      <guid>https://luarence.github.io/post/eassy02/</guid>
-      <description>test</description>
-    </item>
-    
-    <item>
-      <title>Eassy01</title>
-      <link>https://luarence.github.io/post/eassy01/</link>
-      <pubDate>Sat, 22 Jun 2019 00:08:03 +0800</pubDate>
-      
-      <guid>https://luarence.github.io/post/eassy01/</guid>
-      <description>以stream结尾都是字节流，reader和writer结尾都是字符流。 InputStream是所有字节输入流的父类，OutputStrea</description>
-    </item>
-    
   </channel>
 </rss>
