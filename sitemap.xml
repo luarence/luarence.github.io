@@ -3,7 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://luarence.github.io/tags/acm/</loc>
+    <lastmod>2019-08-10T14:33:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://luarence.github.io/post/</loc>
+    <lastmod>2019-08-10T14:33:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://luarence.github.io/tags/</loc>
     <lastmod>2019-08-10T14:33:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -51,11 +63,6 @@
   
   <url>
     <loc>https://luarence.github.io/search/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://luarence.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
