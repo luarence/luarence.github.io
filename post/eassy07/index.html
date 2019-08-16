@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="Java按照类中某一属性排序" />
-    <meta property="og:title" content="Java按照类中某一属性排序" />
-    <meta property="twitter:title" content="Java按照类中某一属性排序" />
+    <meta name="title" content="最小生成树(Kruskal)" />
+    <meta property="og:title" content="最小生成树(Kruskal)" />
+    <meta property="twitter:title" content="最小生成树(Kruskal)" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Java按照类中某一属性排序-</title>
+    <title>最小生成树(Kruskal)-</title>
 
-    <link rel="canonical" href="/post/eassy06/">
+    <link rel="canonical" href="/post/eassy07/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -156,12 +156,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/java" title="Java">
-                            Java
+                        <a class="tag" href="/tags/acm" title="ACM">
+                            ACM
                         </a>
                         
                     </div>
-                    <h1>Java按照类中某一属性排序</h1>
+                    <h1>最小生成树(Kruskal)</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
 			Posted by 
@@ -169,7 +169,7 @@
 		            水的一匹Lu的Blog
 			 
 			on 
-			Wednesday, August 14, 2019
+			Friday, August 16, 2019
                         
                     </span>
                 </div>
@@ -195,160 +195,211 @@
                 <header>
                     <h2>TOC</h2>
                 </header>
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#基本原理">基本原理:</a></li>
+<li><a href="#基本步骤">基本步骤：</a></li>
+<li><a href="#例题印证">例题印证:</a></li>
+<li><a href="#ac-code">AC Code：</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
                 
                 
-                <p><strong>前言:</strong> 我们知道C++中可以很轻松的根据结构体中的某一元素进行排序，但同样的问题到Java中该怎样实现呢？怎么根据Java中某一个类的某一个属性进行排序呢。有两种方法，一种是实现Comparable接口，另一种是构造比较器，我认为实现Comparable接口相对简单易懂，所以我决定记录这种方法。</p>
+
+<p><strong>前言:</strong> 当初学数据结构的时候，听到这个名字被唬住了，认为晦涩难懂；其实不然，在理解和掌握并查集后，再看最小生成树，无非就是比并查集多了一个加权边的条件，其它基本相同。在学习之前，我们首先要知道最小生成树是个什么东西，<strong>我理解的</strong>最小生成树就是保证图上所有的点只有一个祖先且不出现回路用<strong>N-1（N为点的个数）</strong> 条边连在一起的图。这类题目可以利用<strong>Kruskal</strong>或<strong>Prim</strong>算法解决，这次我记录的是Kruskal算法。</p>
 
 <hr />
 
-<p>我们以学生作为例子，学生类里有姓名，年龄，成绩几个属性，首先我们要根据<strong>成绩</strong>排名，在成绩相同的情况下，根据<strong>姓名</strong>排名，在姓名相同的情况下再根据<strong>年龄</strong>排名</p>
+<h3 id="基本原理">基本原理:</h3>
 
-<p>1.先把学生类的代码块写出来,里面要包含get,set方法以便一会调用，或者直接写好toString方法，这里选择使用get,set方法。</p>
+<p>先把所有边“去掉”，把所有点看成独立的；从最小的边权开始连，如果连接后不出现回路，则这次连接为有效连接，否则继续遍历，直到找到<strong>N-1</strong>次有效连接，则找到最小生成树。</p>
 
-<pre><code class="language-java">class Student {
-    String name;
-    int age;
-    int cj;
+<h3 id="基本步骤">基本步骤：</h3>
 
-    public String getName() {
-        return name;
-    }
+<p><strong>准备工作:</strong></p>
 
-    public void setName(String name) {
-        this.name = name;
-    }
+<p>1.存储边，及其边权，可以用结构体存储(C++)也可以用类存储(Java)或者用邻接矩阵。(我选择的是类存储,用list容器保存)</p>
 
-    public int getAge() {
-        return age;
-    }
+<p>2.根据边权进行排序</p>
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+<p>3.写出并查集find和union方法，并初始化祖先parent数组</p>
 
-    public int getCj() {
-        return cj;
-    }
+<p><strong>开始Kruskal:</strong></p>
 
-    public void setCj(int cj) {
-        this.cj = cj;
-    }
+<p>1.遍历已经排好序的结构体或list</p>
 
-    public Student(String name, int age, int cj) {
-        this.name = name;
-        this.age = age;
-        this.cj = cj;
-    }
-    
-    }
+<p>2.输出最小边权总和</p>
 
-}
+<h3 id="例题印证">例题印证:</h3>
 
+<p>本例题来自(HDU_OJ)</p>
+
+<p><strong>Title</strong></p>
+
+<p>还是畅通工程</p>
+
+<p><strong>Problem Description</strong></p>
+
+<blockquote>
+<p>某省调查乡村交通状况，得到的统计表中列出了任意两村庄间的距离。省政府“畅通工程”的目标是使全省任何两个村庄间都可以实现公路交通（但不一定有直接的公路相连，只要能间接通过公路可达即可），并要求铺设的公路总长度为最小。请计算最小的公路总长度。</p>
+</blockquote>
+
+<p><strong>Input</strong></p>
+
+<blockquote>
+<p>测试输入包含若干测试用例。每个测试用例的第1行给出村庄数目N ( &lt; 100 )；随后的N(N-1)/2行对应村庄间的距离，每行给出一对正整数，分别是两个村庄的编号，以及此两村庄间的距离。为简单起见，村庄从1到N编号。
+当N为0时，输入结束，该用例不被处理。</p>
+</blockquote>
+
+<p><strong>Output</strong></p>
+
+<blockquote>
+<p>对每个测试用例，在1行里输出最小的公路总长度。</p>
+</blockquote>
+
+<p><strong>Sample Input</strong></p>
+
+<pre><code>3
+1 2 1
+1 3 2
+2 3 4
+4
+1 2 1
+1 3 4
+1 4 1
+2 3 3
+2 4 2
+3 4 5
+0
 </code></pre>
 
-<p>2.继承<strong>Comparable</strong>接口，实现<strong>compareTo</strong>方法</p>
+<p><strong>Sample Output</strong></p>
 
-<pre><code class="language-java">class Student implements Comparable&lt;Student&gt; {
-    /**
-     *
-     *构造方法，属性等代码已省略
-     *
-     */
-    @Override
-    public int compareTo(Student o) {
-        if (this.getCj() == o.getCj()) {
-            //这个地方注意使用equals比较字符串
-            if (this.getName().equals(o.getName())) {
-                //数据类型的要new Integer()
-                return new Integer(this.getAge()).compareTo(o.getAge());
-            }
-            //字符串类型的比较可以直接写
-            return this.getName().compareTo(o.getName());
-        }
-        return new Integer(this.getCj()).compareTo(o.getCj());
-       
-    }
-
-
-}
-
+<pre><code>3
+5
 </code></pre>
 
-<p>3.通过引入数据，把Student放在List容器中，再用<strong>Collections.sort()</strong>对容器进行遍历,最后遍历展示已经排好序的list</p>
+<p>这道题是一道标准的最小生成树题目</p>
 
-<p>下面展示完整代码：</p>
+<h3 id="ac-code">AC Code：</h3>
 
 <pre><code class="language-java">import java.util.*;
 
-public class TestSort {
+public class Main {
+    //并查集的code
+    public static int find(int[] parent,int x){
+        int r = x;
+        while (parent[r]!=-1) {
+            r = parent[r];
+        }
+        int j = x,i;
+        while (j != r) {
+            i = parent[j];
+            parent[j] = r;
+            j = i;
+        }
+        return r;
+    }
+
+    public static void union(int[] parent,int x,int y){
+        if (x != y) {
+            parent[x] = y;
+        }
+    }
+    //Kruskal核心代码块
+    public static int Kruskal(int[] parent,List&lt;Edge&gt; edges,int n){
+        int sum = 0;
+        for (Edge edge:edges){
+            if (n == 0) {
+                return sum;
+            }
+            int t1 = find(parent,edge.getFrom());
+            int t2 = find(parent,edge.getTo());
+            if (t1 != t2) {
+                sum+=edge.getDis();
+                n--;
+                union(parent,t1,t2);
+            }
+        }
+        return sum;
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        while (sc.hasNext()) {
-            int n = sc.nextInt();
-            List&lt;Student&gt; students = new ArrayList&lt;&gt;();
-            for (int i = 0 ; i &lt; n; ++i){
-                String name = sc.next();
-                int age = sc.nextInt();
-                int cj = sc.nextInt();
-                students.add(new Student(name,age,cj));
+        //村庄数目
+        int N = sc.nextInt();
+        while (N != 0) {
+            int[] parent = new int[N+1];
+            //初始化map
+            for (int i = 0 ; i &lt;= N ;i++){
+                parent[i] = -1;
             }
-            Collections.sort(students);
-            for (Student student : students){
-                System.out.println(student.getName()+&quot; &quot;+student.getAge()+&quot; &quot;+student.getCj());
-            }
-        }
 
+            //还要输入的行数
+            int n = (N*(N-1))/2;
+            List&lt;Edge&gt; edges = new ArrayList&lt;Edge&gt;();
+
+            for (int j = 0 ; j &lt; n;j++){
+                int from = sc.nextInt();
+                int to = sc.nextInt();
+                int dis = sc.nextInt();
+                edges.add(new Edge(from,to,dis));
+            }
+            //按边的权重排序
+            Collections.sort(edges);
+
+            System.out.println(Kruskal(parent,edges,N-1));
+
+            N = sc.nextInt();
+        }
     }
 }
-class Student implements Comparable&lt;Student&gt; {
-    String name;
-    int age;
-    int cj;
+//把边和边的关系和边权存入Edge中
+class Edge implements Comparable&lt;Edge&gt;{
+    int from;
+    int to;
+    int dis;
 
-    public String getName() {
-        return name;
+    public Edge(int from, int to, int dis) {
+        this.from = from;
+        this.to = to;
+        this.dis = dis;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getDis() {
+        return dis;
     }
 
-    public int getAge() {
-        return age;
+    public void setDis(int dis) {
+        this.dis = dis;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public int getFrom() {
+        return from;
     }
 
-    public int getCj() {
-        return cj;
+    public void setFrom(int from) {
+        this.from = from;
     }
 
-    public void setCj(int cj) {
-        this.cj = cj;
+    public int getTo() {
+        return to;
     }
 
-    public Student(String name, int age, int cj) {
-        this.name = name;
-        this.age = age;
-        this.cj = cj;
+    public void setTo(int to) {
+        this.to = to;
     }
-
+    //这个地方继承Comparable接口是为了一会的根据边权排序的工作，具体排序方法可以看之前一篇Blog
     @Override
-    public int compareTo(Student o) {
-        if (this.getCj() == o.getCj()) {
-            //坑人
-            if (this.getName().equals(o.getName())) {
-                return new Integer(this.getAge()).compareTo(o.getAge());
-            }
-            return this.getName().compareTo(o.getName());
-        }
-        return new Integer(this.getCj()).compareTo(o.getCj());
+    public int compareTo(Edge o) {
+        return new Integer( this.getDis()).compareTo(o.getDis());
     }
-
-
 }
 
 </code></pre>
@@ -400,15 +451,10 @@ class Student implements Comparable&lt;Student&gt; {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/eassy05/" data-toggle="tooltip" data-placement="top" title="并查集回顾">&larr;
+                        <a href="/post/eassy06/" data-toggle="tooltip" data-placement="top" title="Java按照类中某一属性排序">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/eassy07/" data-toggle="tooltip" data-placement="top" title="最小生成树(Kruskal)">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

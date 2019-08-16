@@ -6,10 +6,19 @@
     <description>Recent content on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 10:26:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 Aug 2019 09:47:31 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>最小生成树(Kruskal)</title>
+      <link>https://luarence.github.io/post/eassy07/</link>
+      <pubDate>Fri, 16 Aug 2019 09:47:31 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy07/</guid>
+      <description>前言: 当初学数据结构的时候，听到这个名字被唬住了，认为晦涩难懂；其实不然，在理解和掌握并查集后，再看最小生成树，无非就是比并查集多了一个加权</description>
+    </item>
     
     <item>
       <title>Java按照类中某一属性排序</title>
