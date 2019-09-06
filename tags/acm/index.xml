@@ -6,10 +6,19 @@
     <description>Recent content in ACM on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Aug 2019 09:47:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 06 Sep 2019 12:06:47 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/tags/acm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java的输入输出优化-StreamTokenizer</title>
+      <link>https://luarence.github.io/post/eassy08/</link>
+      <pubDate>Fri, 06 Sep 2019 12:06:47 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy08/</guid>
+      <description>前言：其实这篇文章早就应该记录了，因为一开始觉得这么笨的一个问题肯就我会不知道，但后来想想还是记录下来吧。说到控制台输入输出，肯定第一就想到</description>
+    </item>
     
     <item>
       <title>最小生成树(Kruskal)</title>
