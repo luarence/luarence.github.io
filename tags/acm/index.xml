@@ -6,10 +6,19 @@
     <description>Recent content in ACM on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Sep 2019 12:06:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Sep 2019 12:12:59 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/tags/acm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[JSOI2008]星球大战--并查集</title>
+      <link>https://luarence.github.io/post/eassy09/</link>
+      <pubDate>Tue, 17 Sep 2019 12:12:59 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy09/</guid>
+      <description>前言：做了两道关于并查集的省选题，本想整一个并查集专题把这两道题目一块整理出来，但这道题我在做的过程中四处碰壁，TLE、MLE、WA、RE$</description>
+    </item>
     
     <item>
       <title>Java的输入输出优化-StreamTokenizer</title>

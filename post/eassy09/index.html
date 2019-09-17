@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="Java的输入输出优化-StreamTokenizer" />
-    <meta property="og:title" content="Java的输入输出优化-StreamTokenizer" />
-    <meta property="twitter:title" content="Java的输入输出优化-StreamTokenizer" />
+    <meta name="title" content="[JSOI2008]星球大战--并查集" />
+    <meta property="og:title" content="[JSOI2008]星球大战--并查集" />
+    <meta property="twitter:title" content="[JSOI2008]星球大战--并查集" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Java的输入输出优化-StreamTokenizer-</title>
+    <title>[JSOI2008]星球大战--并查集-</title>
 
-    <link rel="canonical" href="/post/eassy08/">
+    <link rel="canonical" href="/post/eassy09/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -160,12 +160,8 @@
                             ACM
                         </a>
                         
-                        <a class="tag" href="/tags/java" title="Java">
-                            Java
-                        </a>
-                        
                     </div>
-                    <h1>Java的输入输出优化-StreamTokenizer</h1>
+                    <h1>[JSOI2008]星球大战--并查集</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
 			Posted by 
@@ -173,7 +169,7 @@
 		            水的一匹Lu的Blog
 			 
 			on 
-			Friday, September 6, 2019
+			Tuesday, September 17, 2019
                         
                     </span>
                 </div>
@@ -199,79 +195,368 @@
                 <header>
                     <h2>TOC</h2>
                 </header>
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#输入格式">输入格式</a></li>
+<li><a href="#输出格式">输出格式</a></li>
+<li><a href="#输入输出样例">输入输出样例</a></li>
+<li><a href="#题目大意">题目大意</a></li>
+<li><a href="#题目分析">题目分析</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
                 
                 
-                <p><strong>前言：</strong>其实这篇文章早就应该记录了，因为一开始觉得这么笨的一个问题肯就我会不知道，但后来想想还是记录下来吧。说到控制台输入输出，肯定第一就想到当时上Java基础的时候老师讲过的Scanner，但殊不知Scanner的效率很低，因为我们平时测试的数据量小可能看不出速度慢来，但当碰到某些数据量大又对时间要求严格的题，同样的算法用Scanner输入就力不从心了。早期就碰到了一个这样的题，算法已经基本不能再优化，怎么提交都有一个点TLE，后来用了StreamTokenizer和PrintWriter对输入输出进行优化后，竟然就AC了。</p>
+
+<p><strong>前言：</strong>做了两道关于并查集的省选题，本想整一个并查集专题把这两道题目一块整理出来，但这道题我在做的过程中四处碰壁，TLE、MLE、WA、RE$\cdots$ 这些能报的错我基本上都报了一遍，用到很多之前博客里写过的内容，最终历尽万苦才AC了；所以这让我决定把这道题目单独拿出来写一篇文章。</p>
 
 <hr />
 
-<p><strong>先上大体结构：</strong></p>
+<p><strong>话不多说先上题目：</strong>（本题来自江苏省省选，题目内容摘自洛谷）</p>
 
-<pre><code class="language-Java">StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
-
-        while (in.nextToken() != StreamTokenizer.TT_EOF) {
-            //输入数字用in.nval;这个地方注意in.nval输入的是double类型  
-            //字符串用in.sval;
-            //每次输入之后要想下一次输入，必须in.nextToken;获取
-           // 最后输入完的时候都需要
-        }
-</code></pre>
-
-<p>下面是引用在学习时候看到的文章中的一段话：</p>
+<h3 id="题目描述">题目描述</h3>
 
 <blockquote>
-<ul>
-<li>类java.io.StreamTokenizer可以获取输入流并将其分析为Token(标记)。StreamTokenizer的nextToken方法将读取下一个标记</li>
-<li>默认情况下，StreamTokenizer认为下列内容是Token：字母、数字、除C和C++注释符号以外的其他符号。如符号“/”不是Token，注释后的内容也不是，而“\”是Token。单引号和双引号以及其中的内容，只能算是一个Token。</li>
-<li>要统计文件的字符数，不能简单地统计Token数，因为字符数不等于Token，按照Token的规定，引号中的内容就算是10页也算是一个Token。如果希望引号和引号中的内容都算作Token，应该通过StreamTokenizer的ordinaryChar()方法将单引号和双引号当做普通字符处理。</li>
-</ul>
+<p>很久以前，在一个遥远的星系，一个黑暗的帝国靠着它的超级武器统治着整个星系。某一天，凭着一个偶然的机遇，一支反抗军摧毁了帝国的超级武器，并攻下了星系中几乎所有的星球。这些星球通过特殊的以太隧道互相直接或间接地连接。但好景不长，很快帝国又重新造出了他的超级武器。凭借这超级武器的力量，帝国开始有计划地摧毁反抗军占领的星球。由于星球的不断被摧毁，两个星球之间的通讯通道也开始不可靠起来。现在，反抗军首领交给你一个任务：给出原来两个星球之间的以太隧道连通情况以及帝国打击的星球顺序，以尽量快的速度求出每一次打击之后反抗军占据的星球的连通块的个数。（如果两个星球可以通过现存的以太通道直接或间接地连通，则这两个星球在同一个连通块中）。</p>
 </blockquote>
+
+<h3 id="输入格式">输入格式</h3>
+
+<blockquote>
+<p>输入文件第一行包含两个整数，N (1&lt;=N&lt;=2M，1 &lt; = N &lt; = 2M，1&lt;=N&lt;=2M) 和 M (1&lt;=M&lt;=200,000，1 &lt; = M &lt; = 200,0001&lt;=M&lt;=200,000)，分别表示星球的数目和以太隧道的数目。星球用 0 ~ N−1 的整数编号。接下来的 M 行，每行包括两个整数 X, Y，其中（0&lt;=X&lt;&gt;Y)表示星球 x和星球 y 之间有 “以太” 隧道，可以直接通讯。接下来的一行为一个整数 kkk ，表示将遭受攻击的星球的数目。接下来的 k 行，每行有一个整数，按照顺序列出了帝国军的攻击目标。这 k 个数互不相同，且都在 0 到 n−1的范围内。</p>
+</blockquote>
+
+<h3 id="输出格式">输出格式</h3>
+
+<blockquote>
+<p>第一行是开始时星球的连通块个数。接下来的 K 行，每行一个整数，表示经过该次打击后现存星球的连通块个数。</p>
+</blockquote>
+
+<h3 id="输入输出样例">输入输出样例</h3>
+
+<p><strong>输入 #1</strong></p>
+
+<pre><code>8 13
+0 1
+1 6
+6 5
+5 0
+0 6
+1 2
+2 3
+3 4
+4 5
+7 1
+7 2
+7 6
+3 6
+5
+1
+6
+3
+5
+7
+
+</code></pre>
+
+<p><strong>输出 #1</strong></p>
+
+<pre><code>1
+1
+1
+2
+3
+3
+</code></pre>
+
+<h3 id="题目大意">题目大意</h3>
+
+<p>原先所有星球都是根据数据中所给的路连在一起的，现在要开始摧毁星球，摧毁星球的同时，与这些被摧毁星球相关的路也不复存在，现在题目就是让求每次摧毁星球后剩下联通块的个数。</p>
+
+<h3 id="题目分析">题目分析</h3>
+
+<p>读完这道题可以肯定一个事情&mdash;这道题目可以用并查集来解决，关键是怎样解决呢？我首先想到的就是暴力，先把路都连起来，然后每摧毁一个星球，用并查集求一次联通块，很显然一道省选题目不可能让我这么简单就做出来，这种思路是不对的。正着不行，可以反着来，把<strong>摧毁</strong>想成<strong>修复</strong>，先把打击后的联通块数量求出来，然后再倒着修复被摧毁的点，每修复一个点把修复完成后的联通块数量记录在数组里，最后输出这个数组就好了。</p>
 
 <hr />
 
-<p><strong>详细语法使用方法：</strong></p>
+<p>于是就有了我第一次提交的代码，很不幸TLE了，但是我还是要把它贴上来，因为它的思路是对的，而且比较好理解</p>
+
+<p><strong>TLE代码：</strong></p>
 
 <pre><code class="language-java">import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Test {
-    //此处勿忘抛出异常
+public class LG_1197_TLE {
+    public static int find(int[] parent,int x){
+        int r = x;
+        while (parent[r] != -1) {
+            r = parent[r];
+        }
+        int j = x,i;
+        while (j != r) {
+            i = parent[j];
+            parent[j] = r;
+            j = i;
+
+        }
+        return r;
+    }
+    public static void union(int[] parent,int x,int y){
+        int fx = find(parent,x);
+        int fy = find(parent,y);
+
+        if (fx != fy) {
+            parent[fx] = fy;
+        }
+    }
     public static void main(String[] args) throws IOException {
         StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
         PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 
         while (in.nextToken() != StreamTokenizer.TT_EOF) {
-            int a = (int)in.nval;
+            int N = (int)in.nval;
             in.nextToken();
-            double b = in.nval;
+            int M = (int)in.nval;
+            int[] parent = new int[N];
+
+            for (int i = 0; i &lt; N; i++) {
+                parent[i] = -1;
+            }
+
+            //记录是否被摧毁数组
+            int[] ifdes = new int[N];
+            //存储星球信息
+            List&lt;Star&gt; stars = new ArrayList&lt;&gt;();
+
+            for (int i = 0; i &lt; M; i++) {
+                in.nextToken();
+                int x = (int)in.nval;
+                in.nextToken();
+                int y = (int)in.nval;
+//                union(parent,x,y);
+                stars.add(new Star(x,y,i));
+            }
+
             in.nextToken();
-            String c = in.sval;
-            /**
-             * 具体算法实现模块，此处省略......
-             *
-             *
-             */
-            out.println(a);
-            out.println(b);
-            out.println(c);
+            int k = (int)in.nval;
+            //要摧毁星球数组
+            int[] destroy = new int[k];
+            //记住编号
+            int[] ans = new int[k+1];
+
+            for (int i = 0; i &lt; k; i++) {
+                in.nextToken();
+                int des = (int)in.nval;
+                //标记会被摧毁
+                ifdes[des] = -1;
+                destroy[i] = des;
+            }
+            //打击后剩下的点
+            int total = N-k;
+            //先连不会被摧毁的星球
+            for(Star star:stars){
+                int from = star.from;
+                int to = star.to;
+                if (ifdes[from] != -1 &amp;&amp; ifdes[to] != -1) {
+                    //证明没有被摧毁
+                    int fx = find(parent,from);
+                    int fy = find(parent,to);
+                    if (fx != fy) {
+                        total--;
+                        parent[fx] = fy;
+                    }
+                }
+            }
+            ans[k] = total;
+            //开始逆序
+            for (int i = k-1; i &gt;= 0; i--) {
+                int des = destroy[i];
+                total++;
+                ifdes[des] = 0;
+
+                //遍历所有与他有关的点（TLE）
+                for (Star star:stars){
+                    int from = star.from;
+                    int to = star.to;
+                    if (from == des) {
+                        if (ifdes[to] != -1){
+                            int fx = find(parent,des);
+                            int fy = find(parent,to);
+                            if (fx != fy) {
+                                total--;
+                                parent[fx] = fy;
+                            }
+                        }
+                    } else if (to == des) {
+                        if (ifdes[from] != -1) {
+                            int fx = find(parent,des);
+                            int fy = find(parent,from);
+                            if (fx != fy) {
+                                total--;
+                                parent[fx] = fy;
+                            }
+                        }
+                    }
+                }
+                ans[i] = total;
+            }
+            for (int i = 0; i &lt;= k; i++) {
+                out.println(ans[i]);
+            }
             out.flush();
+
         }
+    }
+}
+class Star implements Comparable&lt;Star&gt;{
+    int from;
+    int to;
+    //摧毁的顺序
+    int index;
+
+    public Star(int from, int to, int index) {
+        this.from = from;
+        this.to = to;
+        this.index = index;
+    }
+
+    @Override
+    public int compareTo(Star o) {
+        return new Integer(this.index).compareTo(o.index);
     }
 }
 
 </code></pre>
 
-<p>我们用同样的算法，同样的OJ平台测试同一道题目</p>
+<p>这个思路是对的,但是修复星球时，每次都要把所有数据遍历一遍找与这个星球相关的点，这可能就是造成超时的原因。后来知道了可以用邻接矩阵或邻接表来做，才算是恍然大悟。</p>
 
-<p><strong>下面是未用输入输出优化的编译结果：</strong></p>
+<p><strong>AC代码：</strong></p>
 
-<p><img src="/img/eassy08/notuse.png" alt="not_use" /></p>
+<pre><code class="language-java">import java.io.*;
+import java.util.Scanner;
 
-<p><strong>下面是用到输入输出优化的编译结果：</strong></p>
+public class LG_1197 {
+    //邻接矩阵
+    static int[] h;
+    static int[] to;
+    static int[] pre;
+    static int[] next;
+    static int top = -1;
+    public static int[] parent;
+    public static int find(int x){
+        int r = x;
+        while (parent[r] != -1) {
+            r = parent[r];
+        }
+        int j = x,i;
+        while (j != r) {
+            i = parent[j];
+            parent[j] = r;
+            j = i;
+        }
+        return r;
+    }
 
-<p><img src="/img/eassy08/use.png" alt="use" /></p>
+    public static void union(int x,int y){
+        pre[++top] = x;
+        next[top] = h[x];
+        to[top] = y;
+        h[x] = top;
+    }
+    
+//这道题Java可能必须用到输入输出优化，否则方法对了也会报TLE
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 
-<p>经过测试，可见用StreamTokenizer和PrintWriter进行输入输出有着比较明显的速度提升。</p>
+        while (in.nextToken() != StreamTokenizer.TT_EOF) {
+            int N = (int)in.nval;
+            in.nextToken();
+            int M = (int)in.nval;
+            parent = new int[N];
+            pre = new int[M*2+1];
+            to = new int[M*2+1];
+            next = new int[M*2+1];
+            h = new int[N*2+1];
+            for (int i = 0; i &lt; N; i++) {
+                h[i] = -1;
+                parent[i] = -1;
+            }
+
+            //记录是否被摧毁数组
+            int[] ifdes = new int[N];
+            //存储星球信息
+            for (int i = 1; i &lt;= M; i++) {
+                in.nextToken();
+                int x = (int)in.nval;
+                in.nextToken();
+                int y = (int)in.nval;
+//                stars.add(new Star(x,y,i));
+                union(x,y);
+                union(y,x);
+            }
+            in.nextToken();
+            int k = (int)in.nval;
+            //要摧毁星球数组
+            int[] destroy = new int[k];
+            //记住编号
+            int[] ans = new int[k+1];
+
+            for (int i = 0; i &lt; k; i++) {
+                in.nextToken();
+                int des = (int)in.nval;
+                //标记会被摧毁
+                ifdes[des] = -1;
+                destroy[i] = des;
+            }
+            //打击后剩下的点
+            int total = N-k;
+            for (int i = 0; i &lt; 2*M; i++) {
+                if (ifdes[pre[i]] != -1 &amp;&amp; ifdes[to[i]] != -1) {
+                    int find_x = find(pre[i]);
+                    int find_y = find(to[i]);
+                    if (find_x != find_y) {
+                        total--;
+                        parent[find_x] = find_y;
+                    }
+                }
+            }
+            ans[k] = total;
+            //开始逆序
+            for (int i = k-1; i &gt;= 0; i--) {
+                int des = destroy[i];
+                total++;
+                ifdes[des] = 0;
+                //遍历所有与他有关的点
+                for (int j = h[des];j!=-1;j=next[j]) {
+                    if (ifdes[to[j]] == -1) {
+                        continue;
+                    }else {
+                        int fx = find(des);
+                        int fy = find(to[j]);
+                        if (fx != fy) {
+                            total--;
+                            parent[fx] = fy;
+                        }
+                    }
+                }
+                ans[i] = total;
+            }
+            for (int i = 0; i &lt;= k; i++) {
+                out.println(ans[i]);
+            }
+            out.flush();
+        }
+    }
+}
+</code></pre>
 
 
                 
@@ -320,15 +605,10 @@ public class Test {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/eassy07/" data-toggle="tooltip" data-placement="top" title="最小生成树(Kruskal)">&larr;
+                        <a href="/post/eassy08/" data-toggle="tooltip" data-placement="top" title="Java的输入输出优化-StreamTokenizer">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/eassy09/" data-toggle="tooltip" data-placement="top" title="[JSOI2008]星球大战--并查集">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
