@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="[JSOI2008]星球大战--并查集" />
-    <meta property="og:title" content="[JSOI2008]星球大战--并查集" />
-    <meta property="twitter:title" content="[JSOI2008]星球大战--并查集" />
+    <meta name="title" content="SPFA和Dijkstra的一点总结" />
+    <meta property="og:title" content="SPFA和Dijkstra的一点总结" />
+    <meta property="twitter:title" content="SPFA和Dijkstra的一点总结" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>[JSOI2008]星球大战--并查集-</title>
+    <title>SPFA和Dijkstra的一点总结-</title>
 
-    <link rel="canonical" href="/post/eassy09/">
+    <link rel="canonical" href="/post/eassy10/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -161,7 +161,7 @@
                         </a>
                         
                     </div>
-                    <h1>[JSOI2008]星球大战--并查集</h1>
+                    <h1>SPFA和Dijkstra的一点总结</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
 			Posted by 
@@ -169,7 +169,7 @@
 		            水的一匹Lu的Blog
 			 
 			on 
-			Tuesday, September 17, 2019
+			Sunday, October 13, 2019
                         
                     </span>
                 </div>
@@ -204,118 +204,73 @@
 <li><a href="#题目描述">题目描述</a></li>
 <li><a href="#输入格式">输入格式</a></li>
 <li><a href="#输出格式">输出格式</a></li>
-<li><a href="#输入输出样例">输入输出样例</a></li>
-<li><a href="#题目大意">题目大意</a></li>
-<li><a href="#题目分析">题目分析</a></li>
 </ul></li>
+<li><a href="#输入输出样例">输入输出样例</a></li>
 </ul></li>
 </ul>
 </nav>
                 
                 
 
-<p><strong>前言：</strong>做了两道关于并查集的省选题，本想整一个并查集专题把这两道题目一块整理出来，但这道题我在做的过程中四处碰壁，TLE、MLE、WA、RE$\cdots$ 这些能报的错我基本上都报了一遍，用到很多之前博客里写过的内容，最终历尽万苦才AC了；所以这让我决定把这道题目单独拿出来写一篇文章。</p>
+<p><strong>前言：</strong> 今天做题叒叕把心态给做崩了，本来想给自己放一个小假，但看看距离比赛的天数所剩无几，又想到冷落Blog有一阵子了，最近又学习了最短路的两种算法SPFA和Dijkstra，也在做题中碰了各种壁；决定还是将他整理记录下来吧。学SPFA和Dijkstra我是先看的各个大佬的博客，看了好多大佬的博客就不一一列举了，了解了这两种算法的基本原理及实现流程，再去B站看的一个叫”qscqesze“UP主的视频，最后自己用Java把SPFA和Dijkstra实现了。</p>
 
 <hr />
 
-<p><strong>话不多说先上题目：</strong>（本题来自江苏省省选，题目内容摘自洛谷）</p>
+<p>SPFA实际上就是用的<strong>BFS</strong>,Dijkstra用的是<strong>优先队列</strong>。具体原理网上各位大佬整理的比我详细，我主要贴出我的Java代码和我在用算法实现题目过程中碰到的一些问题。</p>
+
+<p>老规矩，还是用一道普通的题目来体现：(题目来自洛谷)</p>
 
 <h3 id="题目描述">题目描述</h3>
 
 <blockquote>
-<p>很久以前，在一个遥远的星系，一个黑暗的帝国靠着它的超级武器统治着整个星系。某一天，凭着一个偶然的机遇，一支反抗军摧毁了帝国的超级武器，并攻下了星系中几乎所有的星球。这些星球通过特殊的以太隧道互相直接或间接地连接。但好景不长，很快帝国又重新造出了他的超级武器。凭借这超级武器的力量，帝国开始有计划地摧毁反抗军占领的星球。由于星球的不断被摧毁，两个星球之间的通讯通道也开始不可靠起来。现在，反抗军首领交给你一个任务：给出原来两个星球之间的以太隧道连通情况以及帝国打击的星球顺序，以尽量快的速度求出每一次打击之后反抗军占据的星球的连通块的个数。（如果两个星球可以通过现存的以太通道直接或间接地连通，则这两个星球在同一个连通块中）。</p>
+<p>如题，给出一个有向图，请输出从某一点出发到所有点的最短路径长度。</p>
 </blockquote>
 
 <h3 id="输入格式">输入格式</h3>
 
 <blockquote>
-<p>输入文件第一行包含两个整数，N (1&lt;=N&lt;=2M，1 &lt; = N &lt; = 2M，1&lt;=N&lt;=2M) 和 M (1&lt;=M&lt;=200,000，1 &lt; = M &lt; = 200,0001&lt;=M&lt;=200,000)，分别表示星球的数目和以太隧道的数目。星球用 0 ~ N−1 的整数编号。接下来的 M 行，每行包括两个整数 X, Y，其中（0&lt;=X&lt;&gt;Y)表示星球 x和星球 y 之间有 “以太” 隧道，可以直接通讯。接下来的一行为一个整数 kkk ，表示将遭受攻击的星球的数目。接下来的 k 行，每行有一个整数，按照顺序列出了帝国军的攻击目标。这 k 个数互不相同，且都在 0 到 n−1的范围内。</p>
+<p>第一行包含三个整数N、M、S，分别表示点的个数、有向边的个数、出发点的编号。</p>
+
+<p>接下来M行每行包含三个整数Fi、Gi、Wi，分别表示第i条有向边的出发点、目标点和长度。</p>
 </blockquote>
 
 <h3 id="输出格式">输出格式</h3>
 
 <blockquote>
-<p>第一行是开始时星球的连通块个数。接下来的 K 行，每行一个整数，表示经过该次打击后现存星球的连通块个数。</p>
+<p>一行，包含N个用空格分隔的整数，其中第i个整数表示从点S出发到点i的最短路径长度（若S=i则最短路径长度为0，若从点S无法到达点i，则最短路径长度为2147483647）</p>
 </blockquote>
 
-<h3 id="输入输出样例">输入输出样例</h3>
+<h2 id="输入输出样例">输入输出样例</h2>
 
 <p><strong>输入 #1</strong></p>
 
-<pre><code>8 13
-0 1
-1 6
-6 5
-5 0
-0 6
-1 2
-2 3
-3 4
-4 5
-7 1
-7 2
-7 6
-3 6
-5
-1
-6
-3
-5
-7
-
+<pre><code>4 6 1
+1 2 2
+2 3 2
+2 4 1
+1 3 5
+3 4 3
+1 4 4
 </code></pre>
 
 <p><strong>输出 #1</strong></p>
 
-<pre><code>1
-1
-1
-2
-3
-3
+<pre><code>0 2 4 3
 </code></pre>
 
-<h3 id="题目大意">题目大意</h3>
+<p>涉及到负权图的时候就必须用SPFA，换句话说DijKstra只能在正权图上使用，但SPFA都可以使用。但是有些题会出数据卡SPFA，虽然这样SPFA还是依然好用,Dijkstra还是依然经典。</p>
 
-<p>原先所有星球都是根据数据中所给的路连在一起的，现在要开始摧毁星球，摧毁星球的同时，与这些被摧毁星球相关的路也不复存在，现在题目就是让求每次摧毁星球后剩下联通块的个数。</p>
+<p>这道题用两种方法都可以AC，但我在AC的路上也碰到了各种问题，最让我苦恼的是一直报MLE，我试过了如链式前向星等各种存图方式，最终都以MLE告终，最后我终于找到了他：</p>
 
-<h3 id="题目分析">题目分析</h3>
-
-<p>读完这道题可以肯定一个事情&mdash;这道题目可以用并查集来解决，关键是怎样解决呢？我首先想到的就是暴力，先把路都连起来，然后每摧毁一个星球，用并查集求一次联通块，很显然一道省选题目不可能让我这么简单就做出来，这种思路是不对的。正着不行，可以反着来，把<strong>摧毁</strong>想成<strong>修复</strong>，先把打击后的联通块数量求出来，然后再倒着修复被摧毁的点，每修复一个点把修复完成后的联通块数量记录在数组里，最后输出这个数组就好了。</p>
-
-<hr />
-
-<p>于是就有了我第一次提交的代码，很不幸TLE了，但是我还是要把它贴上来，因为它的思路是对的，而且比较好理解</p>
-
-<p><strong>TLE代码：</strong></p>
+<p><strong>SPFA代码：</strong></p>
 
 <pre><code class="language-java">import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class LG_1197_TLE {
-    public static int find(int[] parent,int x){
-        int r = x;
-        while (parent[r] != -1) {
-            r = parent[r];
-        }
-        int j = x,i;
-        while (j != r) {
-            i = parent[j];
-            parent[j] = r;
-            j = i;
+public class Main {
+    //存图和最短路径一个数组即可
+    public static NODE[] nodes;
 
-        }
-        return r;
-    }
-    public static void union(int[] parent,int x,int y){
-        int fx = find(parent,x);
-        int fy = find(parent,y);
-
-        if (fx != fy) {
-            parent[fx] = fy;
-        }
-    }
     public static void main(String[] args) throws IOException {
         StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
         PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
@@ -323,240 +278,168 @@ public class LG_1197_TLE {
         while (in.nextToken() != StreamTokenizer.TT_EOF) {
             int N = (int)in.nval;
             in.nextToken();
-            int M = (int)in.nval;
-            int[] parent = new int[N];
-
-            for (int i = 0; i &lt; N; i++) {
-                parent[i] = -1;
+            int M  = (int)in.nval;
+            in.nextToken();
+            int S = (int)in.nval;
+            nodes = new NODE[10010];
+            for (int i = 1; i &lt; 10010; i++) {
+                //记得初始化，否则报空指针
+                nodes[i] = new NODE(i);
+            }
+            for (int i = 0; i &lt; M; i++) {
+                in.nextToken();
+                int from = (int)in.nval;
+                in.nextToken();
+                int to = (int)in.nval;
+                in.nextToken();
+                int d = (int)in.nval;
+                //存图
+                int[] tmp = new int[2];
+                tmp[0] = to;
+                tmp[1] = d;
+                nodes[from].others.add(tmp);
+            }
+            nodes[S].ifUse = true;
+            nodes[S].length = 0;
+            Queue&lt;NODE&gt; queue = new ArrayDeque&lt;&gt;();
+            queue.offer(nodes[S]);
+            //SPFA主要逻辑部分
+            while (!queue.isEmpty()) {
+                int now = queue.poll().index;
+                //从队列中取出，变true为false
+                nodes[now].ifUse = false;
+                for (int i = 0; i &lt; nodes[now].others.size(); i++) {
+                    int to = nodes[now].others.get(i)[0];
+                    int d = nodes[now].others.get(i)[1];
+                    //判断路径是否更短，更短则更新
+                    if (nodes[to].length &gt; nodes[now].length + d) {
+                        nodes[to].length = nodes[now].length + d;
+                        //再把当前节点放进队列
+                        if (nodes[to].ifUse) {
+                            continue;
+                        }
+                        nodes[to].ifUse = true;
+                        queue.offer(nodes[to]);
+                    }
+                }
             }
 
-            //记录是否被摧毁数组
-            int[] ifdes = new int[N];
-            //存储星球信息
-            List&lt;Star&gt; stars = new ArrayList&lt;&gt;();
+            for (int i = 1; i &lt;= N; i++) {
+                if (nodes[i].length == 9999999) {
+                    out.print(&quot;2147483647 &quot;);
+                }else {
+                    out.print(nodes[i].length+&quot; &quot;);
+                }
+            }
+            out.println();
+            out.flush();
+        }
+    }
+}
+class NODE {
+    //判断是否在队列中
+    boolean ifUse;
+    //点的编号
+    int index;
+    //起点到这个点的最短路
+    int length;
+    //存放从这个点到其它点的信息
+    List&lt;int[]&gt; others;
+	//初始化
+    public NODE(int index) {
+        this.index = index;
+        length = 9999999;
+        others = new ArrayList&lt;&gt;();
+        ifUse = false;
+    }
+}
+</code></pre>
+
+<p><strong>Dijkstra代码：</strong></p>
+
+<pre><code class="language-java">import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static Dj[] djs;
+
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+
+        while (in.nextToken() != StreamTokenizer.TT_EOF) {
+            int N = (int)in.nval;
+            in.nextToken();
+            int M  = (int)in.nval;
+            in.nextToken();
+            int S = (int)in.nval;
+            djs = new Dj[100010];
+            for (int i = 1; i &lt;= N; i++) {
+                djs[i] = new Dj(i);
+            }
 
             for (int i = 0; i &lt; M; i++) {
                 in.nextToken();
-                int x = (int)in.nval;
+                int from = (int)in.nval;
                 in.nextToken();
-                int y = (int)in.nval;
-//                union(parent,x,y);
-                stars.add(new Star(x,y,i));
-            }
-
-            in.nextToken();
-            int k = (int)in.nval;
-            //要摧毁星球数组
-            int[] destroy = new int[k];
-            //记住编号
-            int[] ans = new int[k+1];
-
-            for (int i = 0; i &lt; k; i++) {
+                int to = (int)in.nval;
                 in.nextToken();
-                int des = (int)in.nval;
-                //标记会被摧毁
-                ifdes[des] = -1;
-                destroy[i] = des;
+                int d = (int)in.nval;
+                int[] tmp = new int[2];
+                tmp[0] = to;
+                tmp[1] = d;
+                djs[from].others.add(tmp);
             }
-            //打击后剩下的点
-            int total = N-k;
-            //先连不会被摧毁的星球
-            for(Star star:stars){
-                int from = star.from;
-                int to = star.to;
-                if (ifdes[from] != -1 &amp;&amp; ifdes[to] != -1) {
-                    //证明没有被摧毁
-                    int fx = find(parent,from);
-                    int fy = find(parent,to);
-                    if (fx != fy) {
-                        total--;
-                        parent[fx] = fy;
+            //以上代码跟SPFA基本一样
+            //用到优先队列
+            PriorityQueue&lt;Dj&gt; queue = new PriorityQueue&lt;&gt;();
+            djs[S].length = 0;
+            queue.offer(djs[S]);
+            //Dijkstra主要逻辑代码
+            while (!queue.isEmpty()) {
+                int now = queue.poll().index;
+                for (int i = 0; i &lt; djs[now].others.size(); i++) {
+                    int to = djs[now].others.get(i)[0];
+                    int d = djs[now].others.get(i)[1];
+                    if (djs[to].length &gt; djs[now].length+ d) {
+                        djs[to].length = djs[now].length+ d;
+                        queue.offer(djs[to]);
                     }
                 }
             }
-            ans[k] = total;
-            //开始逆序
-            for (int i = k-1; i &gt;= 0; i--) {
-                int des = destroy[i];
-                total++;
-                ifdes[des] = 0;
-
-                //遍历所有与他有关的点（TLE）
-                for (Star star:stars){
-                    int from = star.from;
-                    int to = star.to;
-                    if (from == des) {
-                        if (ifdes[to] != -1){
-                            int fx = find(parent,des);
-                            int fy = find(parent,to);
-                            if (fx != fy) {
-                                total--;
-                                parent[fx] = fy;
-                            }
-                        }
-                    } else if (to == des) {
-                        if (ifdes[from] != -1) {
-                            int fx = find(parent,des);
-                            int fy = find(parent,from);
-                            if (fx != fy) {
-                                total--;
-                                parent[fx] = fy;
-                            }
-                        }
-                    }
+            for (int i = 1; i &lt;= N; i++) {
+                if (djs[i].length == 9999999) {
+                    out.print(&quot;2147483647 &quot;);
+                }else {
+                    System.out.print(djs[i].length+&quot; &quot;);
                 }
-                ans[i] = total;
             }
-            for (int i = 0; i &lt;= k; i++) {
-                out.println(ans[i]);
-            }
+            out.println();
             out.flush();
-
         }
+
     }
 }
-class Star implements Comparable&lt;Star&gt;{
-    int from;
-    int to;
-    //摧毁的顺序
-    int index;
 
-    public Star(int from, int to, int index) {
-        this.from = from;
-        this.to = to;
+class Dj implements Comparable&lt;Dj&gt;{
+    int index;
+    int length;
+    List&lt;int[]&gt; others;
+
+    public Dj(int index) {
         this.index = index;
+        length = 9999999;
+        others = new ArrayList&lt;&gt;();
     }
 
     @Override
-    public int compareTo(Star o) {
-        return new Integer(this.index).compareTo(o.index);
-    }
-}
-
-</code></pre>
-
-<p>这个思路是对的,但是修复星球时，每次都要把所有数据遍历一遍找与这个星球相关的点，这可能就是造成超时的原因。后来知道了可以用邻接矩阵或邻接表来做，才算是恍然大悟。</p>
-
-<p><strong>AC代码：</strong></p>
-
-<pre><code class="language-java">import java.io.*;
-import java.util.Scanner;
-
-public class LG_1197 {
-    //邻接矩阵
-    static int[] h;
-    static int[] to;
-    static int[] pre;
-    static int[] next;
-    static int top = -1;
-    public static int[] parent;
-    public static int find(int x){
-        int r = x;
-        while (parent[r] != -1) {
-            r = parent[r];
-        }
-        int j = x,i;
-        while (j != r) {
-            i = parent[j];
-            parent[j] = r;
-            j = i;
-        }
-        return r;
-    }
-
-    public static void union(int x,int y){
-        pre[++top] = x;
-        next[top] = h[x];
-        to[top] = y;
-        h[x] = top;
-    }
-    
-//这道题Java可能必须用到输入输出优化，否则方法对了也会报TLE
-    public static void main(String[] args) throws IOException {
-        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
-
-        while (in.nextToken() != StreamTokenizer.TT_EOF) {
-            int N = (int)in.nval;
-            in.nextToken();
-            int M = (int)in.nval;
-            parent = new int[N];
-            pre = new int[M*2+1];
-            to = new int[M*2+1];
-            next = new int[M*2+1];
-            h = new int[N*2+1];
-            for (int i = 0; i &lt; N; i++) {
-                h[i] = -1;
-                parent[i] = -1;
-            }
-
-            //记录是否被摧毁数组
-            int[] ifdes = new int[N];
-            //存储星球信息
-            for (int i = 1; i &lt;= M; i++) {
-                in.nextToken();
-                int x = (int)in.nval;
-                in.nextToken();
-                int y = (int)in.nval;
-//                stars.add(new Star(x,y,i));
-                union(x,y);
-                union(y,x);
-            }
-            in.nextToken();
-            int k = (int)in.nval;
-            //要摧毁星球数组
-            int[] destroy = new int[k];
-            //记住编号
-            int[] ans = new int[k+1];
-
-            for (int i = 0; i &lt; k; i++) {
-                in.nextToken();
-                int des = (int)in.nval;
-                //标记会被摧毁
-                ifdes[des] = -1;
-                destroy[i] = des;
-            }
-            //打击后剩下的点
-            int total = N-k;
-            for (int i = 0; i &lt; 2*M; i++) {
-                if (ifdes[pre[i]] != -1 &amp;&amp; ifdes[to[i]] != -1) {
-                    int find_x = find(pre[i]);
-                    int find_y = find(to[i]);
-                    if (find_x != find_y) {
-                        total--;
-                        parent[find_x] = find_y;
-                    }
-                }
-            }
-            ans[k] = total;
-            //开始逆序
-            for (int i = k-1; i &gt;= 0; i--) {
-                int des = destroy[i];
-                total++;
-                ifdes[des] = 0;
-                //遍历所有与他有关的点
-                for (int j = h[des];j!=-1;j=next[j]) {
-                    if (ifdes[to[j]] == -1) {
-                        continue;
-                    }else {
-                        int fx = find(des);
-                        int fy = find(to[j]);
-                        if (fx != fy) {
-                            total--;
-                            parent[fx] = fy;
-                        }
-                    }
-                }
-                ans[i] = total;
-            }
-            for (int i = 0; i &lt;= k; i++) {
-                out.println(ans[i]);
-            }
-            out.flush();
-        }
+    public int compareTo(Dj o) {
+        return new Integer(-this.length).compareTo(-o.length);
     }
 }
 </code></pre>
+
+<p>以上题解不断更新，如有大佬看出问题，我必虚心请教及时更改！</p>
 
 
                 
@@ -605,15 +488,10 @@ public class LG_1197 {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/eassy08/" data-toggle="tooltip" data-placement="top" title="Java的输入输出优化-StreamTokenizer">&larr;
+                        <a href="/post/eassy09/" data-toggle="tooltip" data-placement="top" title="[JSOI2008]星球大战--并查集">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/eassy10/" data-toggle="tooltip" data-placement="top" title="SPFA和Dijkstra的一点总结">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

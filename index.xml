@@ -6,10 +6,19 @@
     <description>Recent content on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Sep 2019 12:12:59 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 19:57:08 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SPFA和Dijkstra的一点总结</title>
+      <link>https://luarence.github.io/post/eassy10/</link>
+      <pubDate>Sun, 13 Oct 2019 19:57:08 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy10/</guid>
+      <description>前言： 今天做题叒叕把心态给做崩了，本来想给自己放一个小假，但看看距离比赛的天数所剩无几，又想到冷落Blog有一阵子了，最近又学习了最短路的两</description>
+    </item>
     
     <item>
       <title>[JSOI2008]星球大战--并查集</title>
