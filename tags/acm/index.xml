@@ -6,10 +6,19 @@
     <description>Recent content in ACM on 水的一匹Lu的Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Oct 2019 19:57:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Oct 2019 21:06:05 +0800</lastBuildDate>
     
 	<atom:link href="https://luarence.github.io/tags/acm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Luogu十月月赛整理</title>
+      <link>https://luarence.github.io/post/eassy11/</link>
+      <pubDate>Mon, 21 Oct 2019 21:06:05 +0800</pubDate>
+      
+      <guid>https://luarence.github.io/post/eassy11/</guid>
+      <description>前言: 这就是上次心态做崩的那次比赛，由于太弱现在也仅仅做出来三道，第一道是纯模拟题，但要注意几个点，否则是AC不了的；第二道是一个思维题，第</description>
+    </item>
     
     <item>
       <title>SPFA和Dijkstra的一点总结</title>

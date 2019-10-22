@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="水的一匹Lu的Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://luarence.github.io//img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="https://luarence.github.io//img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="Luogu十月月赛整理" />
+    <meta property="og:title" content="Luogu十月月赛整理" />
+    <meta property="twitter:title" content="Luogu十月月赛整理" />
+    
+
+    
+    <meta name="description" content="Lu Yuxi，在校本科生，喜欢技术和旅行 | 这里是 Lu Yuxi 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="Lu Yuxi，在校本科生，喜欢技术和旅行 | 这里是 Lu Yuxi 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="Lu Yuxi，在校本科生，喜欢技术和旅行 | 这里是 Lu Yuxi 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Luogu十月月赛整理-</title>
+
+    <link rel="canonical" href="/post/eassy11/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+	
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">水的一匹Lu的Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/acm" title="ACM">
+                            ACM
+                        </a>
+                        
+                    </div>
+                    <h1>Luogu十月月赛整理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+			Posted by 
+			
+		            水的一匹Lu的Blog
+			 
+			on 
+			Monday, October 21, 2019
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+                <nav id="TableOfContents">
+<ul>
+<li><a href="#打字游戏">打字游戏</a>
+<ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#输入格式">输入格式</a></li>
+<li><a href="#输出格式">输出格式</a></li>
+<li><a href="#输入输出样例">输入输出样例</a></li>
+<li><a href="#ac代码">AC代码</a></li>
+</ul></li>
+<li><a href="#小猪佩奇玩游戏">小猪佩奇玩游戏</a>
+<ul>
+<li><a href="#题目描述-1">题目描述</a></li>
+<li><a href="#输入格式-1">输入格式</a></li>
+<li><a href="#输出格式-1">输出格式</a></li>
+<li><a href="#输入输出样例-1">输入输出样例</a></li>
+<li><a href="#ac代码-1">AC代码</a></li>
+</ul></li>
+<li><a href="#赛车游戏">赛车游戏</a>
+<ul>
+<li><a href="#题目描述-2">题目描述</a></li>
+<li><a href="#输入格式-2">输入格式</a></li>
+<li><a href="#输出格式-2">输出格式</a></li>
+<li><a href="#输入输出样例-2">输入输出样例</a></li>
+<li><a href="#前置知识-解题思路">前置知识&amp;解题思路</a></li>
+<li><a href="#ac代码-2">AC代码</a></li>
+</ul></li>
+</ul>
+</nav>
+                
+                
+
+<p><strong>前言:</strong> 这就是上次心态做崩的那次比赛，由于太弱现在也仅仅做出来三道，第一道是纯模拟题，但要注意几个点，否则是AC不了的；第二道是一个思维题，第三道是一个图论题，用到了DFS和SPFA算法还有差分约束；话不多说，先上代码。</p>
+
+<p><strong>ps:题目来自luogu</strong></p>
+
+<h1 id="打字游戏">打字游戏</h1>
+
+<h2 id="题目描述">题目描述</h2>
+
+<blockquote>
+<p>R 君在练习打字。</p>
+
+<p>有这样一个打字练习网站，给定一个范文和输入框，会根据你的输入计算准确率和打字速度。可以输入的字符有小写字母、空格和 <code>.</code>（英文句号），输入字符后，光标也会跟着移动。</p>
+
+<p>输入的文本有多行，R 君可以通过换行键来换行，换行后光标移动到下一行的开头。</p>
+
+<p>R 君也可以按退格键（为了方便，退格键用 <code>&lt;</code> 表示），以删除上一个打的字符，并将光标回移一格。特殊的，如果此时光标已经在一行的开头，则不能继续退格（即忽略此时输入的退格键）。</p>
+
+<p>网站的比较方式遵循以下两个原则：</p>
+
+<ul>
+<li>逐行比较，即对于范文和输入的每一行依次比较，不同行之间不会产生影响，多余的行会被忽略。</li>
+<li>逐位比较，即对于两行的每一个字符依次比较，当且仅当字符相同时才会被算作一次正确，否则会被算作错误。计算答案时，只统计相同的字符个数。</li>
+</ul>
+
+<p>需要注意的是，回车键不会被计入正确的字符个数。</p>
+
+<p>R 君看到网站上显示他花了 T 秒完成了这次的打字游戏，请你计算出他的 KPM（Keys per minutes，每分钟输入的字符个数），答案四舍五入保留整数部分。</p>
+</blockquote>
+
+<h2 id="输入格式">输入格式</h2>
+
+<blockquote>
+<p>R 君会依次告诉你网站的范文，他的输入和花费的时间。</p>
+
+<p>其中范文和输入将会这样读入：给定若干行字符串，以单独的一行 <code>EOF</code> 结束，其中 <code>EOF</code> 不算入输入的文本。</p>
+
+<p>最后一行一个整数 T，表示他打字花费了 T 秒。</p>
+
+<p>可以参考样例输入输出文件和样例解释辅助理解。</p>
+</blockquote>
+
+<h2 id="输出格式">输出格式</h2>
+
+<blockquote>
+<p>一行一个整数，表示 KPM。</p>
+</blockquote>
+
+<h2 id="输入输出样例">输入输出样例</h2>
+
+<p><strong>输入 #1</strong></p>
+
+<pre><code>hello world.
+aaabbbb
+x
+EOF
+heelo world.
+aaacbbbb
+y&lt;x
+EOF
+60
+</code></pre>
+
+<p><strong>输出 #1</strong></p>
+
+<pre><code>18
+</code></pre>
+
+<h2 id="ac代码">AC代码</h2>
+
+<pre><code class="language-java">import java.io.BufferedInputStream;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(new BufferedInputStream(System.in));
+
+        String[] strin = new String[10010];
+        int index1 = 1;
+        String[] strout = new String[10010];
+        int index2 = 1;
+
+        String putin = &quot;nu&quot;;
+        strin[0] = &quot;nu&quot;;
+        while (!putin.equals(&quot;EOF&quot;)) {
+            putin = sc.nextLine();
+            if (!putin.equals(&quot;EOF&quot;)) {
+                strin[index1] = putin;
+                index1++;
+            }
+        }
+
+        putin = &quot;nu&quot;;
+        strout[0] = &quot;nu&quot;;
+        while (!putin.equals(&quot;EOF&quot;)) {
+            putin = sc.nextLine();
+            if (!putin.equals(&quot;EOF&quot;)) {
+                strout[index2] = putin;
+                index2++;
+            }
+        }
+
+        int time = sc.nextInt();
+        int sum = 0;
+        double kpm = 0.0;
+
+        if (index1 &gt; index2) {
+            index1 = index2;
+        }
+        //循环判断
+        for (int i = 1; i &lt; index1; i++) {
+            String standard = strin[i];
+            String myputin = strout[i];
+            //对范文退格键进行处理
+            if (standard.contains(&quot;&lt;&quot;)) {
+                StringBuffer tmp = new StringBuffer(standard);
+                while (standard.contains(&quot;&lt;&quot;)) {
+                    if (tmp.charAt(0) == '&lt;') {
+                        tmp = tmp.delete(0,1);
+                        standard = String.valueOf(tmp);
+                        continue;
+                    }
+                    if (tmp.length() == 2) {
+                        tmp = tmp.delete(0,1);
+                        standard = String.valueOf(tmp);
+                        break;
+                    } else if (tmp.length() == 1) {
+                        standard = String.valueOf(tmp);
+                        break;
+                    }
+                    int x  = tmp.indexOf(&quot;&lt;&quot;);
+                    tmp = tmp.delete(x-1,x+1);
+                    standard = String.valueOf(tmp);
+                }
+            }
+            //对范文退格键进行处理
+            if (myputin.contains(&quot;&lt;&quot;)) {
+                StringBuffer tmp = new StringBuffer(myputin);
+                while (myputin.contains(&quot;&lt;&quot;)) {
+                    if (tmp.charAt(0) == '&lt;') {
+                        tmp = tmp.delete(0,1);
+                        myputin = String.valueOf(tmp);
+                        continue;
+                    }
+                    if (myputin.length() == 2) {
+                        tmp = tmp.delete(0,1);
+                        myputin = String.valueOf(tmp);
+                        break;
+                    } else if (myputin.length() == 1) {
+                        myputin = String.valueOf(tmp);
+                        break;
+                    }
+                    int x  = tmp.indexOf(&quot;&lt;&quot;);
+                    tmp = tmp.delete(x-1,x+1);
+                    myputin = String.valueOf(tmp);
+                }
+            }
+            int k =  0;
+            if (standard.length() &gt; myputin.length()) {
+                k = myputin.length();
+            }else {
+                k = standard.length();
+            }
+            for (int j = 0; j &lt; k; j++) {
+                if (standard.charAt(j) == myputin.charAt(j)) {
+                    sum++;
+                }
+            }
+        }
+
+        kpm = ((double)(sum*60.0)/(time*1.0));
+
+        System.out.println(Math.round(kpm));
+
+    }
+}
+
+</code></pre>
+
+<h1 id="小猪佩奇玩游戏">小猪佩奇玩游戏</h1>
+
+<h2 id="题目描述-1">题目描述</h2>
+
+<blockquote>
+<p>佩奇和乔治玩游♂戏。</p>
+
+<p>佩奇在黑板上写下数字 {1,2,⋯,n}{1,2,\cdots,n}{1,2,⋯,n} ，每次他们会等概率地报出黑板上的一个数字 x ,并删除所有 x 的正整数次幂。</p>
+
+<p>形式化地,给定数列 {1,2,⋯,n}{1,2,\cdots,n}{1,2,⋯,n} ，每次等概率选出数列中存在的 1 个数字 x ，并将形如 {x^k,k∈Z+}{x^k,k \in Z^{+}}{xk,k∈Z+} 的数字删除。</p>
+
+<p>他们玩了整整一个下午，游戏还是没有结束，所以他们想知道，该游戏期望在多少轮后会结束。</p>
+
+<p>如果你的答案与正确答案的绝对误差在 10−410^{-4} 10−4以内，则被判定为正确。</p>
+</blockquote>
+
+<h2 id="输入格式-1">输入格式</h2>
+
+<blockquote>
+<p>第一行 1 个正整数 t,表示佩奇和乔治打算玩 t 轮游戏。</p>
+
+<p>之后t 行,每行 1 个正整数 n,表示佩奇在黑板上写下了数字 {1,2,⋯,n}{1,2,\cdots,n}{1,2,⋯,n} 并将进行游戏。</p>
+</blockquote>
+
+<h2 id="输出格式-1">输出格式</h2>
+
+<blockquote>
+<p>一共 t 行，每行 1 个小数,表示答案，答案保留小数。</p>
+
+<p>如果你的答案与正确答案的绝对误差在 10−410^{-4}10−4以内，则被判定为正确。</p>
+</blockquote>
+
+<h2 id="输入输出样例-1">输入输出样例</h2>
+
+<p><strong>输入 #1</strong></p>
+
+<pre><code>5
+4
+8
+16
+32
+100
+</code></pre>
+
+<p><strong>输出 #1</strong></p>
+
+<pre><code>3.50000000
+7.00000000
+13.83333333
+28.33333333
+93.41666667
+</code></pre>
+
+<h2 id="ac代码-1">AC代码</h2>
+
+<pre><code class="language-java">import java.io.BufferedInputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(new BufferedInputStream(System.in));
+
+        double[] p = new double[100010];
+
+        //次数
+        long T = sc.nextInt();
+
+        while (T-- &gt; 0) {
+            double ans = 0;
+            long n = sc.nextLong();
+            Map&lt;Long,Long&gt; map = new HashMap&lt;&gt;();
+            //i*i都大于n了，就没必要算i*i*i....的值了，一定也大于n
+            for (long i = 2; i*i &lt;= n; i++) {
+                for (long j = i*i; j &lt;= n; j=j*i) {
+                    if (map.containsKey(j)) {
+                        Long tmp = map.get(j);
+                        map.replace(j,tmp,tmp+1);
+                    }else {
+                        map.put(j, Long.valueOf(1));
+                    }
+                }
+            }
+            ans+=(n-map.size());
+            for (Map.Entry&lt;Long,Long&gt; entry : map.entrySet()) {
+                Long key = entry.getKey();
+                Long val = entry.getValue();
+                ans = ans+ 1.0/(val+1);
+            }
+            System.out.printf(&quot;%.7f&quot;,ans);
+            System.out.println();
+        }
+
+    }
+}
+
+</code></pre>
+
+<h1 id="赛车游戏">赛车游戏</h1>
+
+<h2 id="题目描述-2">题目描述</h2>
+
+<blockquote>
+<p>R 君和小伙伴打算一起玩赛车。但他们被老司机 mocania 骗去了秋名山。</p>
+
+<p>秋名山上有 n 个点和 m 条边，R 君和他的小伙伴要从点 111 出发开往点 n，每条边都有一个初始的方向。老司机 mocania 拿到了秋名山的地图但却不知道每条路有多长。显然，为了赛车游戏的公平，每条 1到 n 的路径应当是等长的。mocania 想，我就随便给边表上一个 1&hellip;91&hellip;91&hellip;9 的长度，反正傻傻的 R 君也看不出来。</p>
+
+<p>可 mocania 的数学不大好，不知道怎么给边标长度，只能跑来请教你这个 OI 高手了。</p>
+</blockquote>
+
+<h2 id="输入格式-2">输入格式</h2>
+
+<blockquote>
+<p>第一行两个整数 n,m。</p>
+
+<p>接下来 m 行，每行两个整数 u,v，表示一条从 u 到 v 的有向边。</p>
+</blockquote>
+
+<h2 id="输出格式-2">输出格式</h2>
+
+<blockquote>
+<p>如果无解或者不存在 1 到 n 的路径直接输出一个 -1。</p>
+
+<p>如果有解第一行输出两个数 n,m，和输入文件中给出的相同。</p>
+
+<p>借下来 m 行，每行三个整数 u,v,w，表示把从 u 到 v 的路径的长度设置为 w，其中 w 是一个 1&hellip;&hellip;9 的整数。要求所有边的出现顺序和题目中给出的相同。</p>
+</blockquote>
+
+<h2 id="输入输出样例-2">输入输出样例</h2>
+
+<p><strong>输入 #1</strong></p>
+
+<pre><code>10 10
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 9
+9 10
+1 10
+</code></pre>
+
+<p><strong>输出 #1</strong></p>
+
+<pre><code>10 10
+1 2 1
+2 3 1
+3 4 1
+4 5 1
+5 6 1
+6 7 1
+7 8 1
+8 9 1
+9 10 1
+1 10 9
+</code></pre>
+
+<h2 id="前置知识-解题思路">前置知识&amp;解题思路</h2>
+
+<p>本题主要分三步，存图，遍历1-n必经的节点，跑SPFA。</p>
+
+<p>需要知道的几个名词:</p>
+
+<p><strong>差分约束</strong>：不等式之间的转换，实际上是一种转化，把某些问题转化成最短路问题来进行求解</p>
+
+<p><strong>SPFA</strong>：计算某个点到所有节点最短路的算法</p>
+
+<p><strong>松弛操作</strong>: 一个值先在上界，当存在比这个值小的值时，更新这个值，这次操作就算一次松弛操作</p>
+
+<h2 id="ac代码-2">AC代码</h2>
+
+<pre><code class="language-java">import java.io.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
+public class Main {
+    public static int n,m;
+    public static Roads[] roads1;
+    public static Roads[] roads2;
+    public static Roads[] roads;
+    //判断是否两次都遍历到
+    public static int[] signed;
+    public static int[] f,t;
+    public static int[] nums;
+    //寻找1-n的必经之路
+    public static void dfs1(int x){
+        for (int i = 0; i &lt; roads1[x].others.size(); i++) {
+            int to = roads1[x].others.get(i)[0];
+            if (roads1[to].ifUse) {
+                continue;
+            }
+            roads1[to].ifUse = true;
+            dfs1(to);
+        }
+    }
+    //寻找从n-1的必经之路
+    public static void dfs2(int x){
+        for (int i = 0; i &lt; roads2[x].others.size(); i++) {
+            int to = roads2[x].others.get(i)[0];
+            if (roads2[to].ifUse) {
+                continue;
+            }
+            roads2[to].ifUse = true;
+            dfs2(to);
+        }
+    }
+
+    public static boolean spfa(){
+        Queue&lt;Integer&gt; queue = new ArrayDeque&lt;&gt;();
+        roads[1].dis = 0;
+        roads[1].ifUse = true;
+        queue.offer(1);
+        while (!queue.isEmpty()) {
+            int now = queue.poll();
+            roads[now].ifUse = false;
+            nums[now]++;
+            for (int i = 0; i &lt; roads[now].others.size(); i++) {
+                int v = roads[now].others.get(i)[0];
+                int d = roads[now].others.get(i)[1];
+                if (roads[v].dis &gt; roads[now].dis + d) {
+                    roads[v].dis = roads[now].dis+d;
+                    if (nums[v] &gt; n) {
+                        return false;
+                    }
+                    if (roads[v].ifUse) {
+                        continue;
+                    }
+                    roads[v].ifUse = true;
+                    queue.offer(v);
+                }
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) throws IOException {
+        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+
+        ok:
+        while (in.nextToken() != StreamTokenizer.TT_EOF) {
+            n = (int)in.nval;
+            in.nextToken();
+            m = (int)in.nval;
+            roads1 = new Roads[10010];
+            roads2 = new Roads[10010];
+            roads = new Roads[10010];
+            f = new int[10010];
+            t = new int[10010];
+            nums = new int[10010];
+            signed = new int[10010];
+            for (int i = 0; i &lt; roads2.length; i++) {
+                roads1[i] = new Roads(i);
+                roads2[i] = new Roads(i);
+                roads[i] = new Roads(i);
+            }
+            for (int i = 1; i &lt;= m; i++) {
+                in.nextToken();
+                int from = (int)in.nval;
+                in.nextToken();
+                int to = (int)in.nval;
+                f[i] = from;
+                t[i] = to;
+                int[] tmp1 = new int[2];
+                int[] tmp2 = new int[2];
+                tmp1[0] = to;
+                tmp1[1] = 1;
+                tmp2[0] = from;
+                tmp2[1] = 1;
+                roads1[from].others.add(tmp1);
+                roads2[to].others.add(tmp2);
+            }
+            dfs1(1);
+            dfs2(n);
+            //找到必经之路
+            for (int i = 1; i &lt;= n; i++) {
+                if (roads1[i].ifUse &amp;&amp; roads2[i].ifUse) {
+                    signed[i] = 1;
+                }
+            }
+            //n点到不了,更不用说从1-n了
+            if (!roads1[n].ifUse) {
+                out.println(-1);
+                out.flush();
+                continue ok;
+            }
+            //因为遍历不到1和n，强行加上1和n
+            signed[1] = 1;
+            signed[n] = 1;
+
+            //建图
+            for (int i = 1; i &lt;= m; i++) {
+                int from = f[i];
+                int to = t[i];
+                //都是必经之路
+                if (signed[from] == 1 &amp;&amp; signed[to] == 1) {
+                    int[] tmp1 = new int[2];
+                    int[] tmp2 = new int[2];
+                    tmp1[0] = to;
+                    tmp1[1] = -1;
+                    tmp2[0] = from;
+                    tmp2[1] = 9;
+                    roads[from].others.add(tmp1);
+                    roads[to].others.add(tmp2);
+                }
+            }
+            if (!spfa()) {
+                out.println(-1);
+                out.flush();
+                continue ok;
+            }
+            out.println(n+&quot; &quot;+m);
+            for (int i = 1; i &lt;= m; i++) {
+                out.print(f[i]+&quot; &quot;+t[i]+&quot; &quot;);
+                if (signed[f[i]] == 1 &amp;&amp; signed[t[i]] == 1) {
+                    out.print(roads[t[i]].dis*(-1)-roads[f[i]].dis*(-1));
+                }else {
+                    out.println(1);
+                }
+                out.println();
+            }
+            out.flush();
+        }
+    }
+}
+class Roads{
+    //点序号
+    int index;
+    //是否在队列中
+    boolean ifUse;
+    //存储别的点
+    List&lt;int[]&gt; others;
+    //存储到这个点的距离
+    int dis;
+
+    public Roads(int index) {
+        this.index = index;
+        ifUse = false;
+        others = new ArrayList&lt;&gt;();
+        dis = 9999999;
+    }
+}
+
+</code></pre>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://luarence.github.io/"><img src="/img/favicon.png" />水的一匹Lu的Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/eassy10/" data-toggle="tooltip" data-placement="top" title="SPFA和Dijkstra的一点总结">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/acm" title="acm">
+                            acm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="#">暂无</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href="" rel="alternate" type="application/rss+xml" title="水的一匹Lu的Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:l719536781@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/luarence">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 水的一匹Lu的Blog 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>
