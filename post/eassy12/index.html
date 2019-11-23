@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="Java的输入输出优化-StreamTokenizer" />
-    <meta property="og:title" content="Java的输入输出优化-StreamTokenizer" />
-    <meta property="twitter:title" content="Java的输入输出优化-StreamTokenizer" />
+    <meta name="title" content="个人博客搭建-从无到有" />
+    <meta property="og:title" content="个人博客搭建-从无到有" />
+    <meta property="twitter:title" content="个人博客搭建-从无到有" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="陆 YX, luyuxi, Lu Yuxi, , 水的一匹Lu的Blog, , 博客, 个人网站, 互联网, Web, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Java的输入输出优化-StreamTokenizer-</title>
+    <title>个人博客搭建-从无到有-</title>
 
-    <link rel="canonical" href="/post/eassy08/">
+    <link rel="canonical" href="/post/eassy12/">
 
     <link rel="stylesheet" href="/css/iDisqus.min.css"/>
 	
@@ -156,16 +156,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/acm" title="ACM">
-                            ACM
-                        </a>
-                        
-                        <a class="tag" href="/tags/java" title="Java">
-                            Java
+                        <a class="tag" href="/tags/%E6%8A%80%E6%9C%AF" title="技术">
+                            技术
                         </a>
                         
                     </div>
-                    <h1>Java的输入输出优化-StreamTokenizer</h1>
+                    <h1>个人博客搭建-从无到有</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
 			Posted by 
@@ -173,7 +169,7 @@
 		            水的一匹Lu的Blog
 			 
 			on 
-			Friday, September 6, 2019
+			Saturday, November 23, 2019
                         
                     </span>
                 </div>
@@ -199,79 +195,239 @@
                 <header>
                     <h2>TOC</h2>
                 </header>
-                
-                
-                <p><strong>前言：</strong>其实这篇文章早就应该记录了，因为一开始觉得这么笨的一个问题肯就我会不知道，但后来想想还是记录下来吧。说到控制台输入输出，肯定第一就想到当时上Java基础的时候老师讲过的Scanner，但殊不知Scanner的效率很低，因为我们平时测试的数据量小可能看不出速度慢来，但当碰到某些数据量大又对时间要求严格的题，同样的算法用Scanner输入就力不从心了。早期就碰到了一个这样的题，算法已经基本不能再优化，怎么提交都有一个点TLE，后来用了StreamTokenizer和PrintWriter对输入输出进行优化后，竟然就AC了。</p>
-
-<hr />
-
-<p><strong>先上大体结构：</strong></p>
-
-<pre><code class="language-Java">StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
-
-        while (in.nextToken() != StreamTokenizer.TT_EOF) {
-            //输入数字用in.nval;这个地方注意in.nval输入的是double类型  
-            //字符串用in.sval;
-            //每次输入之后要想下一次输入，必须in.nextToken;获取
-           // 最后输入完的时候都需要
-        }
-</code></pre>
-
-<p>下面是引用在学习时候看到的文章中的一段话：</p>
-
-<blockquote>
+                <nav id="TableOfContents">
 <ul>
-<li>类java.io.StreamTokenizer可以获取输入流并将其分析为Token(标记)。StreamTokenizer的nextToken方法将读取下一个标记</li>
-<li>默认情况下，StreamTokenizer认为下列内容是Token：字母、数字、除C和C++注释符号以外的其他符号。如符号“/”不是Token，注释后的内容也不是，而“\”是Token。单引号和双引号以及其中的内容，只能算是一个Token。</li>
-<li>要统计文件的字符数，不能简单地统计Token数，因为字符数不等于Token，按照Token的规定，引号中的内容就算是10页也算是一个Token。如果希望引号和引号中的内容都算作Token，应该通过StreamTokenizer的ordinaryChar()方法将单引号和双引号当做普通字符处理。</li>
+<li><a href="#一-github端">一、GIthub端</a></li>
+<li><a href="#二-git端配置">二、GIt端配置</a></li>
+<li><a href="#三-主机端配置">三、主机端配置</a></li>
 </ul>
-</blockquote>
+</nav>
+                
+                
 
-<hr />
+<p><strong>前言：</strong> 基于Hogo博客框架搭建私人博客托管在GitHub上,可以让你随时随地查看自己的博客，温故学过的知识，跟其它技术爱好者分享经验，还可以摆脱烦人的广告。今天让我们真正意义上从零开始搭建。虽然看起来好像很复杂，很让人头疼，其实不然，而且最后相信大家可以体会到那种苦尽甘来的幸福感，和自己搭建完全属于自己的Blog的成就感，这些都是其它博客无法比拟的，话不多说，让我们开始吧！</p>
 
-<p><strong>详细语法使用方法：</strong></p>
+<p>搭建主要分为三步：Github端，Git配置，主机端</p>
 
-<pre><code class="language-java">import java.io.*;
+<h1 id="一-github端">一、GIthub端</h1>
 
-public class Test {
-    //此处勿忘抛出异常
-    public static void main(String[] args) throws IOException {
-        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+<p><strong>STEP1:</strong> 打开Github主页(<a href="https://github.com/)进行注册，已经注册过的可以跳过此步骤。注册完登录">https://github.com/)进行注册，已经注册过的可以跳过此步骤。注册完登录</a></p>
 
-        while (in.nextToken() != StreamTokenizer.TT_EOF) {
-            int a = (int)in.nval;
-            in.nextToken();
-            double b = in.nval;
-            in.nextToken();
-            String c = in.sval;
-            /**
-             * 具体算法实现模块，此处省略......
-             *
-             *
-             */
-            out.println(a);
-            out.println(b);
-            out.println(c);
-            out.flush();
-        }
-    }
-}
+<p><img src="/img/eassy12/blog/1.png" alt="image-20191122162519241" /></p>
 
+<p><strong>STEP2:</strong>填写个人信息</p>
+
+<p><img src="/img/eassy12/blog/2.png" alt="img" /></p>
+
+<p><strong>STEP3:</strong></p>
+
+<p>这个地方可填可不填，跳过也可<img src="/img/eassy12/blog/3.png" alt="img" /></p>
+
+<p><strong>STEP4:</strong>同上随便填写或者跳过都可</p>
+
+<p><img src="/img/eassy12/blog/4.png" alt="img" /></p>
+
+<p><strong>STEP5:</strong>最后通过邮箱激活一下账户即可</p>
+
+<p><strong>STEP6:</strong>新建仓库</p>
+
+<p><img src="/img/eassy12/blog/5.png" alt="image-20191123155632922" /></p>
+
+<p><img src="/img/eassy12/blog/7.png" alt="image-20191123155705139" /></p>
+
+<p><strong>这一步注意:3箭头所指地方的路径跟github用户名一致,箭头4所指部分一定选public</strong></p>
+
+<p><img src="/img/eassy12/blog/8.png" alt="image-20191123155945643" /></p>
+
+<p><img src="/img/eassy12/blog/9.png" alt="image-20191123160215316" /></p>
+
+<p><strong>至此github端的配置暂时告一段落，页面别关，相信我，一会还会回来的！</strong></p>
+
+<h1 id="二-git端配置">二、GIt端配置</h1>
+
+<p><strong>STEP1:</strong> 首先先去官网下载Git(<a href="https://git-scm.com/),根据电脑位数选择适合自己的版本即可">https://git-scm.com/),根据电脑位数选择适合自己的版本即可</a></p>
+
+<p><img src="/img/eassy12/blog/32.png" alt="img" /></p>
+
+<p><strong>STEP2：</strong> 打开下载好的程序</p>
+
+<p>1.</p>
+
+<p><img src="/img/eassy12/blog/10.png" alt="img" /></p>
+
+<p>2.选择安装路径</p>
+
+<p><img src="/img/eassy12/blog/11.png" alt="img" /></p>
+
+<p>3.不要点别的,直接点Next</p>
+
+<p><img src="/img/eassy12/blog/12.png" alt="img" /></p>
+
+<p>4.下一步</p>
+
+<p><img src="/img/eassy12/blog/13.png" alt="img" /></p>
+
+<p>5.选好,点下一步</p>
+
+<p><img src="/img/eassy12/blog/14.png" alt="img" /></p>
+
+<p>6.看好哦，看好继续下一步</p>
+
+<p><img src="/img/eassy12/blog/15.png" alt="img" /></p>
+
+<p>7.以下都保持默认选项即可</p>
+
+<p><img src="/img/eassy12/blog/16.png" alt="img" /></p>
+
+<p>8.安装完成后回到桌面，点击鼠标右键你会发现多出了Git GUI Here 和 GIt Bash Here两个选项，点开第二个</p>
+
+<p><img src="/img/eassy12/blog/17.png" alt="img" /></p>
+
+<p><strong>STEP3：</strong>开始配置Git，在命令行输入分别输入以下语句</p>
+
+<pre><code>git config --global user.name &quot;注册github时的用户名&quot;
+
+git config --global user.email &quot;注册github时的邮箱&quot;
 </code></pre>
 
-<p>我们用同样的算法，同样的OJ平台测试同一道题目</p>
+<p>输入完成如下图：</p>
 
-<p><strong>下面是未用输入输出优化的编译结果：</strong></p>
+<p><img src="/img/eassy12/blog/19.png" alt="img" /></p>
 
-<p><img src="/img/eassy08/notuse.png" alt="not_use" /></p>
+<p><strong>STEP4：</strong> 配置SSH</p>
 
-<p><strong>下面是用到输入输出优化的编译结果：</strong></p>
+<p>1.<strong>创建SSH-key</strong></p>
 
-<p><img src="/img/eassy08/use.png" alt="use" /></p>
+<p>在命令行输入以下命令：</p>
 
-<p>经过测试，可见用StreamTokenizer和PrintWriter进行输入输出有着比较明显的速度提升。</p>
+<pre><code>ssh-keygen -t rsa -C &quot;注册github时的邮箱&quot;
+</code></pre>
+
+<p>输入完命令按回车，一路回车，直到出现下图<strong>高亮部分</strong>为止</p>
+
+<p><img src="/img/eassy12/blog/20.jpg" alt="img" /></p>
+
+<p>2.<strong>找到密钥添加到Github上</strong></p>
+
+<p>从上图中高亮部分的路径中找到该文件，用文本编辑工具打开，复制里面的全部内容</p>
+
+<p><img src="/img/eassy12/blog/21.png" alt="image-20191123170110101" /></p>
+
+<p><img src="/img/eassy12/blog/22.png" alt="image-20191123170154581" /></p>
+
+<p><img src="/img/eassy12/blog/23.png" alt="image-20191123170233137" /></p>
+
+<p><img src="/img/eassy12/blog/24.png" alt="image-20191123170351713" /></p>
+
+<p><strong>至此GIt连接GIthub就完成了,让我们测试一下是否成功配置</strong></p>
+
+<p>在Git Bash Here中键入以下命令,回车后如出现下图，则代表配置成功</p>
+
+<pre><code>SSH -T git@github.com
+</code></pre>
+
+<p><img src="/img/eassy12/blog/33.png" alt="img" /></p>
+
+<h1 id="三-主机端配置">三、主机端配置</h1>
+
+<p><strong>STEP1:</strong> <strong>在自己的电脑上安装HUGO博客框架，将压缩包解压到任意目录下。下载地址：(<a href="https://github.com/gohugoio/hugo">https://github.com/gohugoio/hugo</a>)</strong></p>
+
+<p><img src="/img/eassy12/blog/26.png" alt="image-20191123171730738" /></p>
+
+<p><strong>STEP2:初始化站点</strong></p>
+
+<p>打开cmd,进入到hugo.exe所在目录下</p>
+
+<p>输入以下命令:</p>
+
+<pre><code>hugo new site blog(这里根据你自己的喜好取名，避免中文)
+</code></pre>
+
+<p>输完命令出现以下情况说明创建<strong>成功</strong></p>
+
+<p><img src="/img/eassy12/blog/27.png" alt="image-20191123172148259" /></p>
+
+<p>这时你会发现刚刚的文件夹里面多了以你刚刚创建名字命名的文件夹，把<strong>hugo.exe</strong>复制进这个新文件夹里面</p>
+
+<p>好了，这时框架已经有了，让我们为之<strong>注入灵魂</strong>吧！</p>
+
+<p><strong>STEP3:选择主题并下载</strong></p>
+
+<p>进入(<a href="https://www.gohugo.org/theme/">https://www.gohugo.org/theme/</a> 或者 <a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a>) 选择自己喜欢的主题并下载。</p>
+
+<p>选择好之后点击download他会跳转到这个主题所在的github的仓库</p>
+
+<p><img src="/img/eassy12/blog/28.png" alt="image-20191123173216137" /></p>
+
+<p><strong>将主题的压缩包下载到本地</strong></p>
+
+<p><img src="/img/eassy12/blog/29.png" alt="image-20191123173429691" /></p>
+
+<p><strong>解压到刚刚创建好站点的theme文件夹中</strong></p>
+
+<p><img src="/img/eassy12/blog/30.png" alt="image-20191123173733451" /></p>
+
+<p>根据不同的主题更改config.toml文件中内容，让他呈现出你想要的效果，因为不同的主题设置不同，所以这个地方需要大家进行一点小小的探索，哈哈</p>
+
+<p><strong>STEP4:创建自己的第一篇文章</strong></p>
+
+<p>用cmd进入到自己博客站点所在的文件夹中，输入如下命令：</p>
+
+<pre><code>hugo new post/eassy01.md  eassy01.md是文章名称可以根据自己喜好取
+</code></pre>
+
+<p>执行完上一条命令你就会发现在你的content/post目录下多了一个空白的md文件，此时就开始你的表演吧</p>
+
+<p>在将博客托管到github之前可以先在本地进行测试，命令如下：</p>
+
+<pre><code>hugo server -t 你所用主题名称 --buildDrafts
+</code></pre>
+
+<p><strong>STEP5:把博客托管到github上</strong>（以下命令依旧在cmd上敲）</p>
+
+<p>1.利用框架生成静态网页</p>
+
+<pre><code>hugo --theme=你所用主题名称 --buildDrafts --baseUrl=&quot;https://你的github用户名.github.io/&quot;
+</code></pre>
+
+<p>执行完这条命令，你会发现在你本地目录下多了一个public文件夹，用<strong>cd public</strong>命令进入该文件夹，这个public文件夹就是我们最终要放到github上的内容</p>
+
+<p>2.初始化本地仓库</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>3.将该文件夹存入暂存区</p>
+
+<pre><code>git add .
+</code></pre>
+
+<p>4.将暂存区里的东西提交到版本库(这里对暂存区，版本库不理解不明白也没关系，可以日后系统的学习git的知识)</p>
+
+<pre><code>git commit -m &quot;对本次提交的解释&quot;
+</code></pre>
+
+<p>5.在本地仓库添加一个远程仓库,并将本地的master分支跟踪到远程分支（此命令只有在初次部署时才使用)</p>
+
+<pre><code>git remote add origin xxx
+</code></pre>
+
+<p><strong>xxx</strong>的内容从刚才在github中创建好的仓库中找，首先点开你的仓库,点击箭头所示SSH按钮后，复制按钮后面的地址</p>
+
+<p><img src="/img/eassy12/blog/31.png" alt="image-20191123181351274" /></p>
+
+<p>6.push</p>
+
+<pre><code>git push -u origin master   //最终提交
+</code></pre>
+
+<p><strong>STEP6:静候佳音</strong></p>
+
+<p>等待push成功，第一次push可能会比较慢，push成功后&mdash;&ndash;恭喜你，全网可以访问到属于你的blog了！！</p>
+
+<p>在任意浏览器上输入”你的用户名.github.io“即可访问到你自己的BLOG，真正做到随时随地，无垃圾信息，快捷高效的浏览属于自己的blog了！！！</p>
+
+<p>在日后的探索中，你可以自己对Blog进行更深层次的DIY,不断发现新的”玩“法，快快行动起来</p>
 
 
                 
@@ -320,15 +476,10 @@ public class Test {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/eassy07/" data-toggle="tooltip" data-placement="top" title="最小生成树(Kruskal)">&larr;
+                        <a href="/post/eassy11/" data-toggle="tooltip" data-placement="top" title="Luogu十月月赛整理">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/eassy09/" data-toggle="tooltip" data-placement="top" title="[JSOI2008]星球大战--并查集">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
